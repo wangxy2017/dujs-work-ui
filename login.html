@@ -65,7 +65,7 @@
     <fieldset class="layui-elem-field layui-field-title zyl_mar_02">
         <legend>欢迎登陆 - 笔记书签管理平台</legend>
     </fieldset>
-    <div class="layui-row" style="display: none">
+    <div class="layui-row" id="login">
         <form class="layui-form zyl_pad_01" action="">
             <div class="layui-col-sm12 layui-col-md12">
                 <div class="layui-form-item">
@@ -98,13 +98,13 @@
             <div class="layui-col-sm12 layui-col-md12">
                 <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="login">立即登录</button>
             </div>
-            <div class="layui-col-sm12 layui-col-md12">
-                <a href="javascript:;">没有账号，立即注册</a>
+            <div class="layui-col-sm12 layui-col-md12" style="padding: 10px 0;">
+                <a href="javascript:;" onclick="showRegister()">没有账号，立即注册</a>
             </div>
         </form>
     </div>
     <!--    RegisterForm -->
-    <div class="layui-row">
+    <div class="layui-row" style="display: none" id="register">
         <form class="layui-form zyl_pad_01" action="">
             <div class="layui-col-sm12 layui-col-md12">
                 <div class="layui-form-item">
@@ -130,8 +130,8 @@
             <div class="layui-col-sm12 layui-col-md12">
                 <button class="layui-btn layui-btn-fluid" lay-submit="" lay-filter="register">立即注册</button>
             </div>
-            <div class="layui-col-sm12 layui-col-md12">
-                <a href="javascript:;">已有账号，立即登录</a>
+            <div class="layui-col-sm12 layui-col-md12" style="padding: 10px 0;">
+                <a href="javascript:;" onclick="showLogin()">已有账号，立即登录</a>
             </div>
         </form>
     </div>
@@ -139,13 +139,9 @@
 <!-- LoginForm End -->
 
 
-<!-- Jquery Js -->
 <script type="text/javascript" src="js/jquery.min.js"></script>
-<!-- Layui Js -->
 <script type="text/javascript" src="layui/layui.js"></script>
-<!-- Jqarticle Js -->
 <script type="text/javascript" src="assembly/jqarticle/jparticle.min.js"></script>
-<!-- ZylVerificationCode Js-->
 <script type="text/javascript" src="assembly/zylVerificationCode/zylVerificationCode.js"></script>
 <script>
     layui.use(['carousel', 'form'], function () {
@@ -213,6 +209,15 @@
 
     });
 
+    function showRegister() {
+        $("#register").show();
+        $("#login").hide();
+    }
+
+    function showLogin() {
+        $("#login").show();
+        $("#register").hide();
+    }
 </script>
 </body>
 </html>
