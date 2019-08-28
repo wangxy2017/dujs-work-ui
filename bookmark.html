@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="layui/css/layui.css">
 </head>
 <body>
+<div class="layui-btn-container">
+    <button type="button" class="layui-btn" id="test1">
+        <i class="layui-icon">&#xe67c;</i>导入书签
+    </button>
+</div>
 <table id="demo" lay-filter="test"></table>
 <script src="layui/layui.js"></script>
 <script>
-    layui.use('table', function () {
+    layui.use(['table', 'upload'], function () {
         var table = layui.table;
-
+        var upload = layui.upload;
         //第一个实例
         table.render({
             elem: '#demo'
@@ -32,6 +37,17 @@
             ]]
         });
 
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            , url: '/upload/' //上传接口
+            , done: function (res) {
+                //上传完毕回调
+            }
+            , error: function () {
+                //请求异常回调
+            }
+        });
     });
 </script>
 </body>
