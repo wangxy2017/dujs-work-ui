@@ -3,48 +3,84 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>笔记管理</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        .main {
+            padding: 10px;
+        }
+
+        .note-group-list li {
+            padding: 16px;
+        }
+
+        .note-group-list li:hover {
+            background: #dddddd;
+        }
+
+        .note-group-list li p {
+            line-height: 24px;
+        }
+
+        .note-group-list li .time {
+            font-size: 12px;
+            color: #666666;
+        }
+    </style>
 </head>
 <body>
-<div class="layui-row">
-    <div class="layui-col-md3">
-        暂无内容
-    </div>
-    <div class="layui-col-md9">
-        <form class="layui-form" action="">
-            <div class="layui-form-item">
-                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
-                       autocomplete="off" class="layui-input">
-            </div>
-            <div class="layui-form-item">
-                <textarea id="content" style="display: none;"></textarea>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">选择分类</label>
-                <div class="layui-input-inline">
-                    <select name="city" lay-verify="required">
-                        <option value="">默认分类</option>
-                        <option value="0">个人</option>
-                        <option value="1">学习</option>
-                        <option value="2">计算机基础</option>
-                    </select>
+<div class="main">
+    <div class="layui-row">
+        <div class="layui-col-md3">
+            <ul class="note-group-list">
+                <li>
+                    <p class="name">新建笔记1</p>
+                    <p class="time">今天 17:07</p>
+                </li>
+            </ul>
+        </div>
+        <div class="layui-col-md9">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
+                           autocomplete="off" class="layui-input">
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                <div class="layui-form-item">
+                    <textarea id="content" style="display: none;"></textarea>
                 </div>
-            </div>
-        </form>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">选择分类：</label>
+                    <div class="layui-input-inline">
+                        <select name="category">
+                            <option value="">默认分类</option>
+                            <option value="0">个人</option>
+                            <option value="1">学习</option>
+                            <option value="2">计算机基础</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <script src="layui/layui.js"></script>
 <script>
-    layui.use('layedit', function () {
+    layui.use(['layedit', 'form'], function () {
         var layedit = layui.layedit;
+        var form = layui.form;
         layedit.build('content'); //建立编辑器
+
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
     });
 </script>
 </body>

@@ -3,16 +3,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>layout 后台大布局 - Layui</title>
+    <title>书签管理</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        .main{
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-<div class="layui-btn-container">
-    <button type="button" class="layui-btn" id="test1">
-        <i class="layui-icon">&#xe67c;</i>导入书签
-    </button>
+<div class="main">
+    <div class="layui-btn-container">
+        <button type="button" class="layui-btn" id="test1">
+            <i class="layui-icon">&#xe67c;</i>导入书签
+        </button>
+        <button type="button" class="layui-btn" id="test2">
+            <i class="layui-icon">&#xe67c;</i>导出书签
+        </button>
+    </div>
+    <table id="demo" lay-filter="test"></table>
 </div>
-<table id="demo" lay-filter="test"></table>
 <script src="layui/layui.js"></script>
 <script>
     layui.use(['table', 'upload'], function () {
