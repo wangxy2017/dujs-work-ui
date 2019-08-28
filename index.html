@@ -5,35 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>首页</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <style>
+        #menu .layui-icon {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">后台管理系统</div>
-        <ul class="layui-nav layui-layout-right">
+        <ul class="layui-nav layui-layout-right" id="nav">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
                     张三
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">修改密码</a></dd>
+                    <dd><a href="javascript:;">基本资料</a></dd>
+                    <dd><a href="javascript:;" @click="goto('update_password.html')">修改密码</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退出</a></li>
+            <li class="layui-nav-item"><a href="javascript:;" @click="logout()">退出</a></li>
         </ul>
     </div>
 
     <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-            <ul class="layui-nav layui-nav-tree" lay-filter="test">
+            <ul class="layui-nav layui-nav-tree" lay-filter="menu" id="menu">
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="javascript:;"><i class="layui-icon layui-icon-home"></i>我的主页</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-note"></i>笔记管理</a></dd>
-                        <dd><a href="javascript:;"><i class="layui-icon layui-icon-rate-solid"></i>书签管理</a></dd>
+                        <dd><a href="javascript:;" @click="goto('note.html')"><i class="layui-icon layui-icon-note"></i>笔记管理</a>
+                        </dd>
+                        <dd><a href="javascript:;" @click="goto('bookmark.html')"><i
+                                class="layui-icon layui-icon-rate-solid"></i>书签管理</a></dd>
                     </dl>
                 </li>
             </ul>
@@ -41,7 +48,7 @@
     </div>
 
     <div class="layui-body">
-        <iframe id="main" src="update_password.html" style="width: 100%;height: 100%;border: none"></iframe>
+        <iframe id="main" :src="url" style="width: 100%;height: 100%;border: none"></iframe>
     </div>
 
     <div class="layui-footer">
@@ -53,9 +60,46 @@
 <script src="vue/vue.js"></script>
 <script>
     //JavaScript代码区域
-    layui.use('element', function () {
+    layui.use(['element', 'layer'], function () {
         var element = layui.element;
+        var layer = layui.layer;
 
+    });
+    var menu = new Vue({
+        el: "#menu",
+        data: {},
+        methods: {
+            goto: function (url) {
+                main.url = url;
+            }
+        },
+        mounted: function () {
+        }
+    });
+    var main = new Vue({
+        el: "#main",
+        data: {url: null},
+        methods: {},
+        mounted: function () {
+        }
+    });
+    var nav = new Vue({
+        el: "#nav",
+        data: {},
+        methods: {
+            goto: function (url) {
+                main.url = url;
+            },
+            logout: function () {
+                layer.confirm('确认退出系统吗？', function (index) {
+                    //do something
+                    window.location.href = "login.html"
+                    layer.close(index);
+                });
+            }
+        },
+        mounted: function () {
+        }
     });
 </script>
 </body>
