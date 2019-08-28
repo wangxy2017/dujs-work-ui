@@ -58,8 +58,9 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label" style="text-align: left;padding: 9px 0;">选择分类：</label>
                     <div class="layui-input-inline">
-                        <select name="category">
-                            <option value="">默认分类</option>
+                        <select name="category" lay-verify="required">
+                            <option value="">请选择</option>
+                            <option value="-1" selected>默认分类</option>
                             <option value="0">个人</option>
                             <option value="1">学习</option>
                             <option value="2">计算机基础</option>
@@ -81,8 +82,10 @@
     layui.use(['layedit', 'form'], function () {
         var layedit = layui.layedit;
         var form = layui.form;
-        layedit.build('content'); //建立编辑器
-
+        //建立编辑器
+        layedit.build('content', {
+            height: 800 //设置编辑器高度
+        });
         //监听提交
         form.on('submit(formDemo)', function (data) {
             layer.msg(JSON.stringify(data.field));
