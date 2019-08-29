@@ -6,7 +6,7 @@
     <title>书签管理</title>
     <link rel="stylesheet" href="layui/css/layui.css">
     <style>
-        .main{
+        .main {
             padding: 10px;
         }
     </style>
@@ -14,23 +14,36 @@
 <body>
 <div class="main">
     <div class="layui-btn-container">
-        <button type="button" class="layui-btn" id="test1">
-            <i class="layui-icon">&#xe67c;</i>导入书签
+        <button type="button" class="layui-btn" id="import">
+            <i class="layui-icon layui-icon-upload-drag"></i>导入书签
         </button>
-        <button type="button" class="layui-btn" id="test2">
-            <i class="layui-icon">&#xe67c;</i>导出书签
+        <button type="button" class="layui-btn" id="export">
+            <i class="layui-icon layui-icon-download-circle"></i>导出书签
         </button>
     </div>
-    <table id="demo" lay-filter="test"></table>
+    <from class="layui-form">
+        <div class="layui-inline">
+            书签名称：
+            <div class="layui-input-inline">
+                <input type="text" name="name" required lay-verify="required"
+                       placeholder="搜索书签..." autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <button class="layui-btn" lay-submit lay-filter="search">搜索</button>
+        </div>
+    </from>
+    <table id="bookmarkList" lay-filter="bookmarkList"></table>
 </div>
 <script src="layui/layui.js"></script>
 <script>
-    layui.use(['table', 'upload'], function () {
+    layui.use(['table', 'upload', 'form'], function () {
         var table = layui.table;
         var upload = layui.upload;
+        var form = layui.form;
         //第一个实例
         table.render({
-            elem: '#demo'
+            elem: '#bookmarkList'
             , height: 312
             , url: 'https://www.layui.com/demo/table/user/' //数据接口
             , page: true //开启分页
@@ -49,7 +62,7 @@
 
         //执行实例
         var uploadInst = upload.render({
-            elem: '#test1' //绑定元素
+            elem: '#import' //绑定元素
             , url: '/upload/' //上传接口
             , done: function (res) {
                 //上传完毕回调
@@ -57,6 +70,11 @@
             , error: function () {
                 //请求异常回调
             }
+        });
+        //监听提交
+        form.on('submit(search)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
         });
     });
 </script>
