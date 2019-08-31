@@ -6,18 +6,26 @@ layui.use(['table', 'upload', 'form'], function () {
     table.render({
         elem: '#bookmarkList'
         , height: 312
-        , url: 'https://www.layui.com/demo/table/user/' //数据接口
+        , url: 'http://localhost:9000/bookmark/list' //数据接口
         , page: true //开启分页
+        , parseData: function (res) {
+            return {
+                "code": res.code,
+                "msg": res.msg,
+                "count": res.data.total,
+                "data": res.data.list
+            };
+        }, request: {
+            pageName: "pageNum",
+            limitName: "pageSize"
+        },
+        response: {
+            statusCode: 1
+        }
         , cols: [[ //表头
             {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
-            , {field: 'username', title: '用户名', width: 80}
-            , {field: 'sex', title: '性别', width: 80, sort: true}
-            , {field: 'city', title: '城市', width: 80}
-            , {field: 'sign', title: '签名', width: 177}
-            , {field: 'experience', title: '积分', width: 80, sort: true}
-            , {field: 'score', title: '评分', width: 80, sort: true}
-            , {field: 'classify', title: '职业', width: 80}
-            , {field: 'wealth', title: '财富', width: 135, sort: true}
+            , {field: 'username', title: '名称', width: 200}
+            , {field: 'sex', title: '链接'}
         ]]
     });
 
