@@ -23,6 +23,7 @@ layui.use(['carousel', 'form'], function () {
             dataType: "json",
             success: function (result) {
                 if (result.code == 1) {
+                    window.localStorage.token = result.data.token;
                     window.location.href = "index.html";
                 } else {
                     alert(result.msg);
@@ -42,6 +43,7 @@ layui.use(['carousel', 'form'], function () {
             dataType: "json",
             success: function (result) {
                 if (result.code == 1) {
+                    window.localStorage.token = result.data.token;
                     window.location.href = "index.html";
                 } else {
                     alert(result.msg);
