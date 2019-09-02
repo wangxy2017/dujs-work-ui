@@ -13,11 +13,11 @@
 </head>
 <body>
 <div class="main">
-    <form class="layui-form layui-form-pane" action="">
+    <form class="layui-form layui-form-pane" action="" lay-filter="userForm">
         <div class="layui-form-item">
             <label class="layui-form-label">头像</label>
             <div class="layui-input-inline">
-                <input type="text" name="photo" required lay-verify="required" placeholder="请输入图片地址"
+                <input type="text" name="photo" placeholder="请输入图片地址"
                        autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">例：http://t.cn/RCzsdCq</div>
@@ -38,24 +38,15 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button class="layui-btn" lay-submit lay-filter="updateUser">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
     </form>
 </div>
 <script src="layui/layui.js"></script>
-<script>
-    //Demo
-    layui.use('form', function () {
-        var form = layui.form;
-
-        //监听提交
-        form.on('submit(formDemo)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
-</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/user_info.js"></script>
 </body>
 </html>
