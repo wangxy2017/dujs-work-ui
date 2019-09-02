@@ -41,7 +41,7 @@
             </div>
             <ul class="note-group-list" v-if="notes.length > 0">
                 <li v-for="note in notes" @click="viewNote(note.id)">
-                    <p class="name" v-text="note.name"></p>
+                    <p class="name" v-text="note.title"></p>
                     <p class="time" v-text="note.updateTime"></p>
                 </li>
             </ul>
@@ -61,10 +61,7 @@
                     <div class="layui-input-inline">
                         <select name="category" lay-verify="required">
                             <option value="">请选择</option>
-                            <option value="-1" selected>默认分类</option>
-                            <option value="0">个人</option>
-                            <option value="1">学习</option>
-                            <option value="2">计算机基础</option>
+                            <option :value="c.id" v-text="c.name" v-for="c in categories"></option>
                         </select>
                     </div>
                 </div>
