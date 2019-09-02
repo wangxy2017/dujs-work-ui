@@ -10,20 +10,41 @@ layui.use(['layedit', 'form'], function () {
         layer.msg(JSON.stringify(data.field));
         return false;
     });
-    alert(window.localStorage.token);
     var category = new Vue({
         el: "#category",
         data: {
             notes: [],
             category_id: 0
         },
-        methods: {},
+        methods: {
+            /**
+             * 查看笔记内容
+             * @param id
+             */
+            viewNote: function (id) {
+                $.ajax({
+                    type: "GET",
+                    url: getPort() + "/note/content/" + id,
+                    dataType: "json",
+                    headers: {"Token": window.localStorage.token},
+                    success: function (result) {
+                        if (result.code == 1) {
+                            console.log(result);
+                        } else {
+                            alert(result.msg);
+                        }
+                    },
+                    error: function (result) {
+                    }
+                });
+            }
+        },
         mounted: function () {
             $.ajax({
                 type: "GET",
-                url: "http://localhost:9000/note/findAll/" + category.category_id,
+                url: getPort() + "/note/findAll/" + this.category_id,
                 dataType: "json",
-                headers: JSON.stringify({"token": window.localStorage.token}),
+                headers: {"Token": window.localStorage.token},
                 success: function (result) {
                     if (result.code == 1) {
                         console.log(result);

@@ -31,6 +31,7 @@ var nav = new Vue({
         },
         logout: function () {
             layer.confirm('确认退出系统吗？', function (index) {
+                window.localStorage.token = null;// 清除token
                 window.location.href = "login.html";
                 layer.close(index);
             });

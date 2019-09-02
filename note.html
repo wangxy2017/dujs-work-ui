@@ -40,7 +40,7 @@
                 <button type="button" class="layui-btn">全部分类</button>
             </div>
             <ul class="note-group-list" v-if="notes.length > 0">
-                <li v-for="note in notes">
+                <li v-for="note in notes" @click="viewNote(note.id)">
                     <p class="name" v-text="note.name"></p>
                     <p class="time" v-text="note.updateTime"></p>
                 </li>
@@ -80,6 +80,8 @@
 </div>
 <script src="layui/layui.js"></script>
 <script src="vue/vue.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/config.js"></script>
 <script src="js/note.js"></script>
 </body>
 </html>

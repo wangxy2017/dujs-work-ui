@@ -17,7 +17,7 @@ layui.use(['carousel', 'form'], function () {
     form.on('submit(login)', function (data) {
         $.ajax({
             type: "POST",
-            url: "http://localhost:9000/login/login",
+            url: getPort() + "/login/login",
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(data.field),
             dataType: "json",
@@ -37,7 +37,7 @@ layui.use(['carousel', 'form'], function () {
     form.on('submit(register)', function (data) {
         $.ajax({
             type: "POST",
-            url: "http://localhost:9000/register/register",
+            url: getPort() + "/register/register",
             contentType: "application/json;charset=utf-8",
             data: JSON.stringify(data.field),
             dataType: "json",

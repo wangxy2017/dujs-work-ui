@@ -6,7 +6,7 @@ layui.use(['table', 'upload', 'form'], function () {
     table.render({
         elem: '#bookmarkList'
         , height: 312
-        , url: 'http://localhost:9000/bookmark/list' //数据接口
+        , url: getPort()+'/bookmark/list' //数据接口
         , page: true //开启分页
         , parseData: function (res) {
             return {
