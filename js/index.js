@@ -31,16 +31,7 @@ var nav = new Vue({
         },
         logout: function () {
             layer.confirm('确认退出系统吗？', function (index) {
-                axios.get('http://localhost:9000/login/logout')
-                    .then(function (response) {
-                        if (response.data.code == 1) {
-                            window.location.href = "login.html"
-                        }
-                        console.log(response);
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                    });
+                window.location.href = "login.html";
                 layer.close(index);
             });
         }

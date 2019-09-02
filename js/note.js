@@ -10,4 +10,30 @@ layui.use(['layedit', 'form'], function () {
         layer.msg(JSON.stringify(data.field));
         return false;
     });
+    alert(window.localStorage.token);
+    var category = new Vue({
+        el: "#category",
+        data: {
+            notes: [],
+            category_id: 0
+        },
+        methods: {},
+        mounted: function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9000/note/findAll/" + category.category_id,
+                dataType: "json",
+                headers: JSON.stringify({"token": window.localStorage.token}),
+                success: function (result) {
+                    if (result.code == 1) {
+                        console.log(result);
+                    } else {
+                        alert(result.msg);
+                    }
+                },
+                error: function (result) {
+                }
+            });
+        }
+    });
 });

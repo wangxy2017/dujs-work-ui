@@ -35,18 +35,19 @@
 <body>
 <div class="main">
     <div class="layui-row">
-        <div class="layui-col-md3">
+        <div class="layui-col-md3" id="category">
             <div class="layui-btn-group">
                 <button type="button" class="layui-btn">全部分类</button>
             </div>
-            <ul class="note-group-list">
-                <li>
-                    <p class="name">新建笔记1</p>
-                    <p class="time">今天 17:07</p>
+            <ul class="note-group-list" v-if="notes.length > 0">
+                <li v-for="note in notes">
+                    <p class="name" v-text="note.name"></p>
+                    <p class="time" v-text="note.updateTime"></p>
                 </li>
             </ul>
+            <div v-else>暂无数据</div>
         </div>
-        <div class="layui-col-md9">
+        <div class="layui-col-md9" id="note">
             <form class="layui-form" action="">
                 <div class="layui-form-item">
                     <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
@@ -78,6 +79,7 @@
     </div>
 </div>
 <script src="layui/layui.js"></script>
+<script src="vue/vue.js"></script>
 <script src="js/note.js"></script>
 </body>
 </html>
