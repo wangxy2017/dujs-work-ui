@@ -24,7 +24,9 @@ var main = new Vue({
 });
 var nav = new Vue({
     el: "#nav",
-    data: {},
+    data: {
+        username: ""
+    },
     methods: {
         goto: function (url) {
             main.url = url;
@@ -38,5 +40,20 @@ var nav = new Vue({
         }
     },
     mounted: function () {
+        $.ajax({
+            type: "GET",
+            url: getPort() + "/user/query/" + window.localStorage.userId,
+            dataType: "json",
+            headers: {"Token": window.localStorage.token},
+            success: function (result) {
+                if (result.code == 1) {
+                    nav.username = result.data.username;
+                } else {
+                    alert(result.msg);
+                }
+            },
+            error: function (result) {
+            }
+        });
     }
 });

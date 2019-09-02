@@ -24,6 +24,7 @@ layui.use(['carousel', 'form'], function () {
             success: function (result) {
                 if (result.code == 1) {
                     window.localStorage.token = result.data.token;
+                    window.localStorage.userId = result.data.userId;
                     window.location.href = "index.html";
                 } else {
                     alert(result.msg);
@@ -44,6 +45,7 @@ layui.use(['carousel', 'form'], function () {
             success: function (result) {
                 if (result.code == 1) {
                     window.localStorage.token = result.data.token;
+                    window.localStorage.userId = result.data.userId;
                     window.location.href = "index.html";
                 } else {
                     alert(result.msg);
