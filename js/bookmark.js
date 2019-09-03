@@ -25,7 +25,7 @@ layui.use(['table', 'upload', 'form'], function () {
         }
         , cols: [[ //表头
             {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
-            , {field: 'name', title: '名称', width: 200}
+            , {field: 'name', title: '名称'}
             , {field: 'href', title: '链接'}
         ]]
     });
