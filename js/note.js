@@ -68,12 +68,11 @@ layui.use(['layedit', 'form', 'layer'], function () {
             loadNoteList: function () {
                 $.ajax({
                     type: "GET",
-                    url: getPort() + "/note/findAll/" + category.category_id,
+                    url: getPort() + "/note/findAll/" + this.category_id,
                     dataType: "json",
                     headers: {"Token": window.localStorage.token},
                     success: function (result) {
                         if (result.code == 1) {
-                            // console.log(result);
                             category.notes = result.data;
                         } else {
                             alert(result.msg);
@@ -94,7 +93,6 @@ layui.use(['layedit', 'form', 'layer'], function () {
                     headers: {"Token": window.localStorage.token},
                     success: function (result) {
                         if (result.code == 1) {
-                            // console.log(result);
                             category.categories = result.data;
                         } else {
                             alert(result.msg);
@@ -107,20 +105,22 @@ layui.use(['layedit', 'form', 'layer'], function () {
         },
         mounted: function () {
             this.loadNoteList();
+            this.loadCategoryList();
         }
     });
 
-    var note = new Vue({
-        el: "#note",
-        data: {},
-        computed: {
-            categories: function () {
-                return category.categories;
-            }
-        },
-        methods: {},
-        mounted: function () {
-        }
-    });
+    // var note = new Vue({
+    //     el: "#note",
+    //     data: {},
+    //     computed: {
+    //         categories: function () {
+    //             return category.categories;
+    //         }
+    //     },
+    //     methods: {},
+    //     mounted: function () {
+    //         console.log(this.categories);
+    //     }
+    // });
 
 });

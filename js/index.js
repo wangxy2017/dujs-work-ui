@@ -17,7 +17,7 @@ var menu = new Vue({
 });
 var main = new Vue({
     el: "#main",
-    data: {url: null},
+    data: {url: "note.html"},
     methods: {},
     mounted: function () {
     }
