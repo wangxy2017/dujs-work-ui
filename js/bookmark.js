@@ -6,8 +6,9 @@ layui.use(['table', 'upload', 'form'], function () {
     table.render({
         elem: '#bookmarkList'
         , height: 312
-        , url: getPort()+'/bookmark/list' //数据接口
+        , url: getPort() + '/bookmark/list' //数据接口
         , page: true //开启分页
+        , headers: {"Token": window.localStorage.token}
         , parseData: function (res) {
             return {
                 "code": res.code,
@@ -24,15 +25,18 @@ layui.use(['table', 'upload', 'form'], function () {
         }
         , cols: [[ //表头
             {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
-            , {field: 'username', title: '名称', width: 200}
-            , {field: 'sex', title: '链接'}
+            , {field: 'name', title: '名称', width: 200}
+            , {field: 'href', title: '链接'}
         ]]
     });
 
     //执行实例
     var uploadInst = upload.render({
         elem: '#import' //绑定元素
-        , url: '/upload/' //上传接口
+        , url: getPort() + '/bookmark/upload' //上传接口
+        , accept: "file"
+        , exts: "html"
+        , headers: {"Token": window.localStorage.token}
         , done: function (res) {
             //上传完毕回调
         }
