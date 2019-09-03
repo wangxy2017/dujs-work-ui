@@ -57,26 +57,12 @@ layui.use(['element', 'layer'], function () {
             }
         },
         mounted: function () {
-            element.render('navDemo');
-            // $.ajax({
-            //     type: "GET",
-            //     url: getPort() + "/user/query/" + window.localStorage.userId,
-            //     dataType: "json",
-            //     headers: {"Token": window.localStorage.token},
-            //     success: function (result) {
-            //         if (result.code == 1) {
-            //             nav.username = result.data.username;
-            //             nav.$nextTick(function () {
-            //
-            //             });
-            //         } else {
-            //             layer.msg(result.msg, {icon: 2});
-            //         }
-            //     },
-            //     error: function (result) {
-            //         layer.msg("网络异常", {icon: 2});
-            //     }
-            // });
+            get('/user/query' + window.localStorage.userId, function (result) {
+                nav.username = result.data.username;
+                nav.$nextTick(function () {
+                    element.render('nav');
+                });
+            });
         }
     });
 });

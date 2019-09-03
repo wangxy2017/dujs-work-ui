@@ -16,46 +16,18 @@ layui.use(['carousel', 'form', 'layer'], function () {
 
     //监听提交
     form.on('submit(login)', function (data) {
-        $.ajax({
-            type: "POST",
-            url: getPort() + "/login/login",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify(data.field),
-            dataType: "json",
-            success: function (result) {
-                if (result.code == 1) {
-                    window.localStorage.token = result.data.token;
-                    window.localStorage.userId = result.data.userId;
-                    window.location.href = "index.html";
-                } else {
-                    layer.msg(result.msg, {icon: 2});
-                }
-            },
-            error: function (result) {
-                layer.msg("网络异常", {icon: 2});
-            }
+        post('/login/login', data.field, function (result) {
+            window.localStorage.token = result.data.token;
+            window.localStorage.userId = result.data.userId;
+            window.location.href = "index.html";
         });
         return false;
     });
     form.on('submit(register)', function (data) {
-        $.ajax({
-            type: "POST",
-            url: getPort() + "/register/register",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify(data.field),
-            dataType: "json",
-            success: function (result) {
-                if (result.code == 1) {
-                    window.localStorage.token = result.data.token;
-                    window.localStorage.userId = result.data.userId;
-                    window.location.href = "index.html";
-                } else {
-                    layer.msg(result.msg, {icon: 2});
-                }
-            },
-            error: function (result) {
-                layer.msg("网络异常", {icon: 2});
-            }
+        post('/register/register', data.field, function (result) {
+            window.localStorage.token = result.data.token;
+            window.localStorage.userId = result.data.userId;
+            window.location.href = "index.html";
         });
         return false;
     });

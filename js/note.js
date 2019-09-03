@@ -8,29 +8,13 @@ layui.use(['layedit', 'form', 'layer'], function () {
     });
     //监听提交
     form.on('submit(saveNote)', function (data) {
-        $.ajax({
-            type: "POST",
-            url: getPort() + "/note/save",
-            contentType: "application/json;charset=utf-8",
-            data: JSON.stringify({
-                title: data.field.title,
-                "content": layedit.getContent(index),
-                category_id: data.field.category
-            }),
-            dataType: "json",
-            headers: {"Token": window.localStorage.token},
-            success: function (result) {
-                if (result.code == 1) {
-                    console.log(result);
-                    layer.msg("保存成功");
-                    category.loadNoteList();
-                } else {
-                    layer.msg(result.msg, {icon: 2});
-                }
-            },
-            error: function (result) {
-                layer.msg("网络异常", {icon: 2});
-            }
+        post('/note/save', {
+            title: data.field.title,
+            "content": layedit.getContent(index),
+            category_id: data.field.category
+        }, function (result) {
+            layer.msg("保存成功", {icon: 1});
+            category.loadNoteList();
         });
         return false;
     });
@@ -47,63 +31,24 @@ layui.use(['layedit', 'form', 'layer'], function () {
              * @param id
              */
             viewNote: function (id) {
-                $.ajax({
-                    type: "GET",
-                    url: getPort() + "/note/content/" + id,
-                    dataType: "json",
-                    headers: {"Token": window.localStorage.token},
-                    success: function (result) {
-                        if (result.code == 1) {
-                            console.log(result);
-                        } else {
-                            layer.msg(result.msg, {icon: 2});
-                        }
-                    },
-                    error: function (result) {
-                        layer.msg("网络异常", {icon: 2});
-                    }
+                get('/note/content' + id, function (result) {
+                    console.log(result);
                 });
             },
             /**
              * 加载笔记列表
              */
             loadNoteList: function () {
-                $.ajax({
-                    type: "GET",
-                    url: getPort() + "/note/findAll/" + this.category_id,
-                    dataType: "json",
-                    headers: {"Token": window.localStorage.token},
-                    success: function (result) {
-                        if (result.code == 1) {
-                            category.notes = result.data;
-                        } else {
-                            layer.msg(result.msg, {icon: 2});
-                        }
-                    },
-                    error: function (result) {
-                        layer.msg("网络异常", {icon: 2});
-                    }
+                get('/note/findAll/' + this.category_id, function (result) {
+                    category.notes = result.data;
                 });
             },
             /**
              * 加载分类列表
              */
             loadCategoryList: function () {
-                $.ajax({
-                    type: "GET",
-                    url: getPort() + "/category/list",
-                    dataType: "json",
-                    headers: {"Token": window.localStorage.token},
-                    success: function (result) {
-                        if (result.code == 1) {
-                            category.categories = result.data;
-                        } else {
-                            layer.msg(result.msg, {icon: 2});
-                        }
-                    },
-                    error: function (result) {
-                        layer.msg("网络异常", {icon: 2});
-                    }
+                get('/category/list', function (result) {
+                    category.categories = result.data;
                 });
             }
         },
