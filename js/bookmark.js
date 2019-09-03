@@ -1,9 +1,10 @@
-layui.use(['table', 'upload', 'form'], function () {
+layui.use(['table', 'upload', 'form', 'layer'], function () {
     var table = layui.table;
     var upload = layui.upload;
     var form = layui.form;
+    var layer = layui.layer;
     //第一个实例
-    table.render({
+    var tableList = table.render({
         elem: '#bookmarkList'
         , height: 312
         , url: getPort() + '/bookmark/list' //数据接口
@@ -24,7 +25,7 @@ layui.use(['table', 'upload', 'form'], function () {
             statusCode: 1
         }
         , cols: [[ //表头
-            {field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left'}
+            {field: 'id', title: 'ID', width: 80}
             , {field: 'name', title: '名称'}
             , {field: 'href', title: '链接'}
         ]]
@@ -38,15 +39,20 @@ layui.use(['table', 'upload', 'form'], function () {
         , exts: "html"
         , headers: {"Token": window.localStorage.token}
         , done: function (res) {
-            //上传完毕回调
+            // 上传成功
+            if (res.code == 1) {
+                tableList.reload();
+            } else {
+                layer.msg(res.msg, {icon: 2});
+            }
         }
         , error: function () {
-            //请求异常回调
+            layer.msg("网络异常", {icon: 2});
         }
     });
     //监听提交
     form.on('submit(search)', function (data) {
-        layer.msg(JSON.stringify(data.field));
+        tableList.reload({where: data.field});
         return false;
     });
 });
