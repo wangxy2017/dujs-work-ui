@@ -25,10 +25,11 @@ layui.use(['layedit', 'form', 'layer'], function () {
                     layer.msg("保存成功");
                     category.loadNoteList();
                 } else {
-                    alert(result.msg);
+                    layer.msg(result.msg, {icon: 2});
                 }
             },
             error: function (result) {
+                layer.msg("网络异常", {icon: 2});
             }
         });
         return false;
@@ -55,10 +56,11 @@ layui.use(['layedit', 'form', 'layer'], function () {
                         if (result.code == 1) {
                             console.log(result);
                         } else {
-                            alert(result.msg);
+                            layer.msg(result.msg, {icon: 2});
                         }
                     },
                     error: function (result) {
+                        layer.msg("网络异常", {icon: 2});
                     }
                 });
             },
@@ -75,10 +77,11 @@ layui.use(['layedit', 'form', 'layer'], function () {
                         if (result.code == 1) {
                             category.notes = result.data;
                         } else {
-                            alert(result.msg);
+                            layer.msg(result.msg, {icon: 2});
                         }
                     },
                     error: function (result) {
+                        layer.msg("网络异常", {icon: 2});
                     }
                 });
             },
@@ -95,10 +98,11 @@ layui.use(['layedit', 'form', 'layer'], function () {
                         if (result.code == 1) {
                             category.categories = result.data;
                         } else {
-                            alert(result.msg);
+                            layer.msg(result.msg, {icon: 2});
                         }
                     },
                     error: function (result) {
+                        layer.msg("网络异常", {icon: 2});
                     }
                 });
             }

@@ -1,6 +1,7 @@
-layui.use(['carousel', 'form'], function () {
-    var carousel = layui.carousel
-        , form = layui.form;
+layui.use(['carousel', 'form', 'layer'], function () {
+    var carousel = layui.carousel;
+    var form = layui.form;
+    var layer = layui.layer;
 
     //自定义验证规则
     form.verify({
@@ -27,10 +28,11 @@ layui.use(['carousel', 'form'], function () {
                     window.localStorage.userId = result.data.userId;
                     window.location.href = "index.html";
                 } else {
-                    alert(result.msg);
+                    layer.msg(result.msg, {icon: 2});
                 }
             },
             error: function (result) {
+                layer.msg("网络异常", {icon: 2});
             }
         });
         return false;
@@ -48,10 +50,11 @@ layui.use(['carousel', 'form'], function () {
                     window.localStorage.userId = result.data.userId;
                     window.location.href = "index.html";
                 } else {
-                    alert(result.msg);
+                    layer.msg(result.msg, {icon: 2});
                 }
             },
             error: function (result) {
+                layer.msg("网络异常", {icon: 2});
             }
         });
         return false;

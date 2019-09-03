@@ -1,6 +1,7 @@
 //Demo
-layui.use('form', function () {
+layui.use(['form', 'layer'], function () {
     var form = layui.form;
+    var layer = layui.layer;
 
     //监听提交
     form.on('submit(updateUser)', function (data) {
@@ -14,12 +15,13 @@ layui.use('form', function () {
             success: function (result) {
                 if (result.code == 1) {
                     console.log(result);
-                    layer.msg("修改成功");
+                    layer.msg("修改成功", {icon: 1});
                 } else {
-                    alert(result.msg);
+                    layer.msg(result.msg, {icon: 2});
                 }
             },
             error: function (result) {
+                layer.msg("网络异常", {icon: 2});
             }
         });
         return false;
@@ -41,10 +43,11 @@ layui.use('form', function () {
                         , "email": user.email
                     })
                 } else {
-                    alert(result.msg);
+                    layer.msg(result.msg, {icon: 2});
                 }
             },
             error: function (result) {
+                layer.msg("网络异常", {icon: 2});
             }
         });
     });
