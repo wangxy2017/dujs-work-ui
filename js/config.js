@@ -50,7 +50,7 @@ function post(url, data, callback) {
             if (result.code == 1) {
                 callback(result);
             } else {
-                layer.msg(result.msg, {icon: 2});
+                layer.msg(result.msg, {icon: 5});
             }
         },
         error: function (result) {
