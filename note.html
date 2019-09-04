@@ -20,9 +20,9 @@
                 <button type="button" class="layui-btn">全部分类</button>
             </div>
             <ul class="note-group-list" id="notes">
-                <li class="note-group-item">
-                    <p class="name">新建笔记1</p>
-                    <p class="time">2019-08-20 13:30:59</p>
+                <li class="note-group-item" v-for="note in notes">
+                    <p class="name">{{note.title}}</p>
+                    <p class="time">{{note.updateTime}}</p>
                 </li>
             </ul>
         </div>
@@ -41,6 +41,7 @@
                     <div class="layui-input-inline">
                         <select name="category" lay-verify="required">
                             <option value="">请选择</option>
+                            <option value="0">默认分类</option>
                         </select>
                     </div>
                 </div>
@@ -54,8 +55,9 @@
         </div>
     </div>
 </div>
-<script src="js/jquery.min.js"></script>
+<script src="jquery/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
+<script src="vue/vue.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/note.js"></script>
 </body>
