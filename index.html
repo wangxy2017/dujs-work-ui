@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>首页</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="layui/css/layui.css">
     <style>
-        #menu .layui-icon {
+        .layui-icon {
             margin-right: 10px;
         }
     </style>
@@ -14,12 +15,12 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
-        <div class="layui-logo">笔记书签系统</div>
+        <div class="layui-logo"><i class="layui-icon layui-icon-read" style="font-weight: bold"></i>笔记书签管理平台</div>
         <ul class="layui-nav layui-layout-right" lay-filter="nav">
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-                    <span id="username">默认用户</span>
+                    <span id="username">用户</span>
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" onclick="jumpTo('user_info.html')">基本资料</a></dd>
@@ -54,7 +55,7 @@
 
     <div class="layui-footer">
         <!-- 底部固定区域 -->
-        © layui.com - 底部固定区域
+        © dujs.net - 底部固定区域
     </div>
 </div>
 <script src="jquery/jquery.min.js"></script>
