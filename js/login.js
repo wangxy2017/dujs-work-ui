@@ -5,12 +5,38 @@ layui.use(['carousel', 'form', 'layer'], function () {
 
     //自定义验证规则
     form.verify({
+        /**
+         * 验证码
+         * @param value
+         * @returns {string}
+         */
         vercodes: function (value) {
             //获取验证码
             var zylVerCode = $(".zylVerCode").html();
             if (value.toLowerCase() != zylVerCode.toLowerCase()) {
                 return '验证码错误';
             }
+        },
+        /**
+         * 验证用户名
+         * @param value
+         */
+        checkUsername: function (value) {
+            get('/register/checkUsername?username=' + value, function (result) {
+                if (result.code == 1) {
+                    return "用户已注册";
+                }
+            });
+        },
+        /**
+         * 验证邮箱
+         */
+        checkEmail: function (value) {
+            get('/register/checkEmail?email=' + value, function (result) {
+                if (result.code == 1) {
+                    return "邮箱已注册";
+                }
+            });
         }
     });
 

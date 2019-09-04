@@ -20,12 +20,13 @@
             <div class="layui-btn-group">
                 <button type="button" class="layui-btn">全部分类</button>
             </div>
-            <ul class="note-group-list" id="notes">
+            <ul class="note-group-list" id="notes" v-if="notes.length>0">
                 <li class="note-group-item" v-for="note in notes">
                     <p class="name">{{note.title}}</p>
                     <p class="time">{{note.updateTime}}</p>
                 </li>
             </ul>
+            <div v-else style="margin-top: 10px">暂无笔记</div>
         </div>
         <div class="layui-col-md1">&nbsp;</div>
         <div class="layui-col-md9">
