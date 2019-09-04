@@ -69,15 +69,12 @@ layui.use(['carousel', 'form', 'layer'], function () {
             speed: 30,//粒子的动画速度
         }
     });
-
+    window.showRegister = function () {
+        $("#register").show();
+        $("#login").hide();
+    }
+    window.showLogin = function () {
+        $("#login").show();
+        $("#register").hide();
+    }
 });
-
-function showRegister() {
-    $("#register").show();
-    $("#login").hide();
-}
-
-function showLogin() {
-    $("#login").show();
-    $("#register").hide();
-}

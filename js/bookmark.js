@@ -3,7 +3,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
     var upload = layui.upload;
     var form = layui.form;
     var layer = layui.layer;
-    //第一个实例
+    //加载数据
     var tableList = table.render({
         elem: '#bookmarkList'
         , height: 312
@@ -31,7 +31,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         ]]
     });
 
-    //执行实例
+    //导入书签
     var uploadInst = upload.render({
         elem: '#import' //绑定元素
         , url: getPort() + '/bookmark/upload' //上传接口

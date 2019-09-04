@@ -13,14 +13,14 @@ layui.use(['element', 'layer'], function () {
      * 页面跳转
      * @param url
      */
-    function jumpTo(url) {
+    window.jumpTo = function (url) {
         $("#main").attr("src", url);
     }
 
     /**
      * 退出
      */
-    function logout() {
+    window.logout = function () {
         layer.confirm('确认退出系统吗？', function (index) {
             window.localStorage.token = null;// 清除token
             window.localStorage.userId = null;// 清除userId

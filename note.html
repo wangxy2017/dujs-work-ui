@@ -5,30 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>笔记管理</title>
     <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="css/note.css">
     <style>
         .main {
             padding: 10px;
-        }
-
-        .note-group-list {
-            margin-top: 10px;
-        }
-
-        .note-group-list li {
-            padding: 16px;
-        }
-
-        .note-group-list li:hover {
-            background: #dddddd;
-        }
-
-        .note-group-list li p {
-            line-height: 24px;
-        }
-
-        .note-group-list li .time {
-            font-size: 12px;
-            color: #666666;
         }
     </style>
 </head>
@@ -39,13 +19,12 @@
             <div class="layui-btn-group">
                 <button type="button" class="layui-btn">全部分类</button>
             </div>
-            <ul class="note-group-list">
-                <li>
-                    <p class="name"></p>
-                    <p class="time"></p>
+            <ul class="note-group-list" id="notes">
+                <li class="note-group-item">
+                    <p class="name">新建笔记1</p>
+                    <p class="time">2019-08-20 13:30:59</p>
                 </li>
             </ul>
-            <div v-else>暂无数据</div>
         </div>
         <div class="layui-col-md1">&nbsp;</div>
         <div class="layui-col-md9">
