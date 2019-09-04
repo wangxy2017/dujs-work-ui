@@ -15,7 +15,7 @@ layui.use(['element', 'layer'], function () {
             }
         },
         mounted: function () {
-            // element.render('menu');
+            element.render('menu');
         }
     });
     /**
@@ -59,9 +59,7 @@ layui.use(['element', 'layer'], function () {
         mounted: function () {
             get('/user/query/' + window.localStorage.userId, function (result) {
                 nav.username = result.data.username;
-                nav.$nextTick(function () {
-                    element.render('nav');
-                });
+                element.render('nav');
             });
         }
     });
