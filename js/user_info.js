@@ -13,7 +13,7 @@ layui.use(['form', 'layer'], function () {
 
     $(function () {
         // 查询基本资料
-        get('/user/query/' + window.localStorage.userId, function (result) {
+        get('/user/query/' + window.localStorage.getItem("userId"), function (result) {
             var user = result.data;
             form.val("userForm", {
                 "photo": user.photo

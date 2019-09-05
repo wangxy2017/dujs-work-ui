@@ -4,7 +4,7 @@ layui.use(['element', 'layer'], function () {
     var layer = layui.layer;
 
     $(function () {
-        get('/user/query/' + window.localStorage.userId, function (result) {
+        get('/user/query/' + window.localStorage.getItem("userId"), function (result) {
             $("#username").text(result.data.username);
         });
     });
@@ -22,8 +22,8 @@ layui.use(['element', 'layer'], function () {
      */
     window.logout = function () {
         layer.confirm('确认退出系统吗？', function (index) {
-            window.localStorage.token = null;// 清除token
-            window.localStorage.userId = null;// 清除userId
+            window.localStorage.removeItem("token");// 清除token
+            window.localStorage.removeItem("userId");// 清除userId
             window.location.href = "login.html";
             layer.close(index);
         });

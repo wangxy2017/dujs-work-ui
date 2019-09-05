@@ -9,7 +9,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         , height: 312
         , url: getPort() + '/bookmark/list' //数据接口
         , page: true //开启分页
-        , headers: {"Token": window.localStorage.token}
+        , headers: {"Token": window.localStorage.getItem("token")}
         , parseData: function (res) {
             return {
                 "code": res.code,
@@ -37,7 +37,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         , url: getPort() + '/bookmark/upload' //上传接口
         , accept: "file"
         , exts: "html"
-        , headers: {"Token": window.localStorage.token}
+        , headers: {"Token": window.localStorage.getItem("token")}
         , done: function (res) {
             // 上传成功
             if (res.code == 1) {

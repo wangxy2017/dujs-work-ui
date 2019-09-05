@@ -1,4 +1,4 @@
-var port = "http://localhost:9000";
+var port = "http://222.180.198.30:9030/";
 
 /**
  * 获取host
@@ -18,7 +18,7 @@ function get(url, callback) {
         type: "GET",
         url: getPort() + url,
         dataType: "json",
-        headers: {"Token": window.localStorage.token},
+        headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
             if (result.code == 1) {
                 callback(result);
@@ -45,7 +45,7 @@ function post(url, data, callback) {
         dataType: "json",
         data: JSON.stringify(data),
         contentType: "application/json;charset=utf-8",
-        headers: {"Token": window.localStorage.token},
+        headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
             if (result.code == 1) {
                 callback(result);

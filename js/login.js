@@ -43,16 +43,16 @@ layui.use(['carousel', 'form', 'layer'], function () {
     //监听提交
     form.on('submit(login)', function (data) {
         post('/login/login', data.field, function (result) {
-            window.localStorage.token = result.data.token;
-            window.localStorage.userId = result.data.userId;
+            window.localStorage.setItem("token", result.data.token);
+            window.localStorage.setItem("userId", result.data.userId);
             window.location.href = "index.html";
         });
         return false;
     });
     form.on('submit(register)', function (data) {
         post('/register/register', data.field, function (result) {
-            window.localStorage.token = result.data.token;
-            window.localStorage.userId = result.data.userId;
+            window.localStorage.setItem("token", result.data.token);
+            window.localStorage.setItem("userId", result.data.userId);
             window.location.href = "index.html";
         });
         return false;
