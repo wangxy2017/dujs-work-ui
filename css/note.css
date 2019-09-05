@@ -3,7 +3,9 @@
 }
 
 .note-group-list .note-group-item {
+    position: relative;
     padding: 16px;
+    border-radius: 4px;
 }
 
 .note-group-list .note-group-item:hover {
@@ -17,4 +19,18 @@
 .note-group-list .note-group-item .time {
     font-size: 12px;
     color: #666666;
+}
+
+.note-group-list .note-group-item .remove {
+    display: none;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 26px;
+    color: #666;
+    cursor: pointer;
+}
+
+.note-group-list .note-group-item:hover .remove {
+    display: initial;
 }

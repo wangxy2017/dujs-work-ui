@@ -45,6 +45,19 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 get('/note/findAll/0', function (result) {
                     vue.notes = result.data;
                 });
+            },
+            /**
+             * 删除笔记
+             * @param id
+             */
+            removeNote: function (id) {
+                layer.confirm('确认删除笔记吗？', function (index) {
+                    del('/note/' + id, function () {
+                        layer.msg("删除成功", {icon: 1});
+                        vue.loadNoteList();
+                    });
+                    layer.close(index);
+                });
             }
         },
         mounted: function () {
