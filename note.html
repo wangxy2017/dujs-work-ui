@@ -24,7 +24,7 @@
                 <ul class="note-group-list" v-if="notes.length>0">
                     <li class="note-group-item" v-for="note in notes">
                         <p class="name">{{note.title}}</p>
-                        <p class="time">{{note.updateTime}}</p>
+                        <p class="time">{{toLocalTime(note.updateTime)}}</p>
                         <i class="remove layui-icon layui-icon-close-fill" @click="removeNote(note.id)"></i>
                     </li>
                 </ul>
