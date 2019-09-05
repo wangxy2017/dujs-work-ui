@@ -18,7 +18,19 @@ layui.use(['layedit', 'form', 'layer'], function () {
         });
         return false;
     });
-
+    $(function () {
+        // 加载分类
+        get('/category/list', function (result) {
+            var list = result.data == null ? [] : result.data;
+            var html = "";
+            for (var i = 0; i < list.length; i++) {
+                html += ' <option value="' + list[i].id + '">' + list[i].name + '</option>';
+            }
+            $("#category").append(html);
+            // 重新渲染
+            form.render("select");
+        });
+    });
     // 笔记列表
     var vue = new Vue({
         el: "#notes",
