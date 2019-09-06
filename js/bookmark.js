@@ -55,4 +55,18 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         tableList.reload({where: data.field});
         return false;
     });
+    /**
+     * 清空书签
+     */
+    window.deleteAll = function () {
+        del('/bookmark/deleteAll', function (result) {
+            layer.msg("清除成功", {icon: 5});
+            tableList.reload();
+        });
+    };
+    /**
+     * 导出书签
+     */
+    window.exportAll = function () {
+    };
 });
