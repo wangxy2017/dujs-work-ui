@@ -59,9 +59,12 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
      * 清空书签
      */
     window.deleteAll = function () {
-        del('/bookmark/deleteAll', function (result) {
-            layer.msg("清除成功", {icon: 5});
-            tableList.reload();
+        layer.confirm('确认清空书签吗？', function (index) {
+            del('/bookmark/deleteAll', function (result) {
+                layer.msg("清除成功", {icon: 6});
+                tableList.reload();
+            });
+            layer.close(index);
         });
     };
     /**
