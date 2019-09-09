@@ -68,32 +68,8 @@ layui.use(['carousel', 'form', 'layer'], function () {
         });
         return false;
     });
-
-
-    //设置轮播主体高度
-    var zyl_login_height = $(window).height() / 1.3;
-    var zyl_car_height = $(".zyl_login_height").css("cssText", "height:" + zyl_login_height + "px!important");
-
-
-    //Login轮播主体
-    carousel.render({
-        elem: '#zyllogin'//指向容器选择器
-        , width: '100%' //设置容器宽度
-        , height: 'zyl_car_height'
-        , anim: 'fade' //切换动画方式
-        , autoplay: true //是否自动切换false true
-        , arrow: 'hover' //切换箭头默认显示状态||不显示：none||悬停显示：hover||始终显示：always
-        , indicator: 'none' //指示器位置||外部：outside||内部：inside||不显示：none
-        , interval: '5000' //自动切换时间:单位：ms（毫秒）
-    });
-
-    //监听轮播--案例暂未使用
-    carousel.on('change(zyllogin)', function (obj) {
-        var loginCarousel = obj.index;
-    });
-
     //粒子线条
-    $(".zyl_login_cont").jParticle({
+    $(".zyl_login_cont").css({"height":$(window).height()/1.3}).jParticle({
         background: "rgba(0,0,0,0)",//背景颜色
         color: "#fff",//粒子和连线的颜色
         particlesNumber: 100,//粒子数量
