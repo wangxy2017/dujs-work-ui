@@ -69,7 +69,6 @@ layui.use(['carousel', 'form', 'layer'], function () {
         elem: '#zyllogin'//指向容器选择器
         , width: '100%' //设置容器宽度
         , height: 'zyl_car_height'
-        , arrow: 'always' //始终显示箭头
         , anim: 'fade' //切换动画方式
         , autoplay: true //是否自动切换false true
         , arrow: 'hover' //切换箭头默认显示状态||不显示：none||悬停显示：hover||始终显示：always

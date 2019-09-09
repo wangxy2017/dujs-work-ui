@@ -43,7 +43,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
             if (res.code == 1) {
                 tableList.reload();
             } else {
-                layer.msg(res.msg, {icon: 2});
+                layer.msg(res.msg, {icon: 5});
             }
         }
         , error: function () {
@@ -65,7 +65,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
                     layer.msg("清除成功", {icon: 6});
                     tableList.reload();
                 } else {
-                    layer.msg(result.msg, {icon: 2});
+                    layer.msg(result.msg, {icon: 5});
                 }
             });
             layer.close(index);

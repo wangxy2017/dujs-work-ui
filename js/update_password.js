@@ -17,9 +17,9 @@ layui.use(['form', 'layer'], function () {
     form.on('submit(updatePwd)', function (data) {
         post('/user/password', data.field, function (result) {
             if (result.code == 1) {
-                layer.msg("修改成功", {icon: 1});
+                layer.msg("修改成功", {icon: 6});
             } else {
-                layer.msg(result.msg, {icon: 2});
+                layer.msg(result.msg, {icon: 5});
             }
         });
         return false;

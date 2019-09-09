@@ -14,10 +14,10 @@ layui.use(['layedit', 'form', 'layer'], function () {
             category_id: data.field.category
         }, function (result) {
             if (result.code == 1) {
-                layer.msg("保存成功", {icon: 1});
+                layer.msg("保存成功", {icon: 6});
                 vue.loadNoteList();
             } else {
-                layer.msg(result.msg, {icon: 2});
+                layer.msg(result.msg, {icon: 5});
             }
         });
         return false;
@@ -34,8 +34,6 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 $("#category").append(html);
                 // 重新渲染
                 form.render("select");
-            } else {
-                layer.msg(result.msg, {icon: 2});
             }
         });
     });
@@ -64,10 +62,10 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 layer.confirm('确认删除笔记吗？', function (index) {
                     del('/note/' + id, function (result) {
                         if (result.code == 1) {
-                            layer.msg("删除成功", {icon: 1});
+                            layer.msg("删除成功", {icon: 6});
                             vue.loadNoteList();
                         } else {
-                            layer.msg(result.msg, {icon: 2});
+                            layer.msg(result.msg, {icon: 5});
                         }
                     });
                     layer.close(index);
