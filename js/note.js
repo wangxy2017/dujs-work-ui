@@ -18,7 +18,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
     });
     //监听提交
     form.on('submit(saveNote)', function (data) {
-        post('/note/save', data.field, function (result) {
+        var url = $("#id").val() == "" ? "/note/save" : "/note/update";
+        post(url, data.field, function (result) {
             if (result.code == 1) {
                 layer.msg("保存成功", {icon: 6});
                 vue.loadNoteList();
@@ -78,6 +79,25 @@ layui.use(['layedit', 'form', 'layer'], function () {
                         }
                     });
                     layer.close(index);
+                });
+            },
+            /**
+             * 查看笔记
+             */
+            viewNote: function (id) {
+                get('/note/content/' + id, function (result) {
+                    if (result.code == 1) {
+                        var note = result.data;
+                        form.val("noteForm", {
+                            "id": note.id
+                            , "title": note.title
+                            , "content": note.content
+                            , "category_id": note.categoryId
+                        });
+                        layedit.setContent(index, note.content);
+                    } else {
+                        layer.msg(result.msg, {icon: 5});
+                    }
                 });
             }
         },

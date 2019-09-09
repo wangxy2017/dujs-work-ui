@@ -22,10 +22,10 @@
             </div>
             <div id="notes">
                 <ul class="note-group-list" v-if="notes.length>0">
-                    <li class="note-group-item" v-for="note in notes">
+                    <li class="note-group-item" v-for="note in notes" @click="viewNote(note.id)">
                         <p class="name">{{note.title}}</p>
                         <p class="time">{{toLocalTime(note.updateTime)}}</p>
-                        <i class="remove layui-icon layui-icon-close-fill" @click="removeNote(note.id)"></i>
+                        <i class="remove layui-icon layui-icon-close-fill" @click.stop="removeNote(note.id)"></i>
                     </li>
                 </ul>
                 <div style="margin-top: 10px;" v-else>暂无笔记</div>
@@ -33,7 +33,8 @@
         </div>
         <div class="layui-col-md1">&nbsp;</div>
         <div class="layui-col-md9">
-            <form class="layui-form" action="" id="noteForm">
+            <form class="layui-form" action="" id="noteForm" lay-filter="noteForm">
+                <input type="hidden" id="id" name="id">
                 <div class="layui-form-item">
                     <input type="text" name="title" required lay-verify="required" placeholder="请输入标题"
                            autocomplete="off" class="layui-input">
