@@ -43,17 +43,28 @@ layui.use(['carousel', 'form', 'layer'], function () {
     //监听提交
     form.on('submit(login)', function (data) {
         post('/login/login', data.field, function (result) {
-            window.localStorage.setItem("token", result.data.token);
-            window.localStorage.setItem("userId", result.data.userId);
-            window.location.href = "index.html";
+            if (result.code == 1) {
+                window.localStorage.setItem("token", result.data.token);
+                window.localStorage.setItem("userId", result.data.userId);
+                window.location.href = "index.html";
+            } else {
+                layer.msg(result.msg, {icon: 5});
+            }
         });
         return false;
     });
     form.on('submit(register)', function (data) {
         post('/register/register', data.field, function (result) {
-            window.localStorage.setItem("token", result.data.token);
-            window.localStorage.setItem("userId", result.data.userId);
-            window.location.href = "index.html";
+            if (result.code == 1) {
+                layer.msg("注册成功！", {icon: 6});
+                setTimeout(function () {
+                    window.localStorage.setItem("token", result.data.token);
+                    window.localStorage.setItem("userId", result.data.userId);
+                    window.location.href = "index.html";
+                }, 1000);
+            } else {
+                layer.msg(result.msg, {icon: 5});
+            }
         });
         return false;
     });
