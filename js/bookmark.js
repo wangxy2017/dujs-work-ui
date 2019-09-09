@@ -26,8 +26,11 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         }
         , cols: [[ //表头
             {field: 'id', title: 'ID', width: 80}
-            , {field: 'name', title: '名称'}
-            , {field: 'href', title: '链接'}
+            , {
+                field: 'href',
+                title: '链接',
+                templet: '<div><a href="javascript:;" class="layui-table-link" onclick="goto(\'{{d.href}}\')"><img src="{{d.icon}}" class="icon">{{d.name}}</a></div>'
+            }
         ]]
     });
 
@@ -77,4 +80,11 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
     window.exportAll = function () {
         console.log("导出书签");
     };
+    /**
+     * 新窗口
+     * @param url
+     */
+    window.goto = function (url) {
+        window.parent.open(url);
+    }
 });
