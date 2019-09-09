@@ -22,6 +22,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
             if (result.code == 1) {
                 layer.msg("保存成功", {icon: 6});
                 vue.loadNoteList();
+                // 表单重置
+                $("#noteForm")[0].reset();
+                layedit.setContent(index, "");
             } else {
                 layer.msg(result.msg, {icon: 5});
             }
