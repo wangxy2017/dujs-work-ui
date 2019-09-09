@@ -105,4 +105,42 @@ layui.use(['layedit', 'form', 'layer'], function () {
             this.loadNoteList();
         }
     });
+    var recycle = new Vue({
+        el: "#recycleNotes",
+        data: {
+            notes: []
+        },
+        methods: {
+            /**
+             * 清空回收站
+             */
+            cleanNotes: function () {
+                get('/note/clean', function (result) {
+                    if (result.code == 1) {
+                        recycle.notes = [];
+                    }
+                })
+            }
+        },
+        mounted: function () {
+        }
+    });
+    /**
+     * 回收站
+     */
+    window.recycleList = function () {
+        get('/note/recycle', function (result) {
+            if (result.code == 1) {
+                recycle.notes = result.data;
+                $("#recycleNotes").show();
+                $("#notes").hide();
+            } else {
+                layer.msg(result.msg, {icon: 5});
+            }
+        })
+    }
+    window.showNotes = function () {
+        $("#recycleNotes").hide();
+        $("#notes").show();
+    }
 });

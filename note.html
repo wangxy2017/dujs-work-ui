@@ -17,8 +17,11 @@
 <div class="main">
     <div class="layui-row">
         <div class="layui-col-md2">
-            <div class="layui-btn-group">
-                <button type="button" class="layui-btn">全部分类</button>
+            <div class="layui-btn-container">
+                <button type="button" class="layui-btn" onclick="showNotes()">全部分类</button>
+                <button type="button" class="layui-btn layui-btn-primary" onclick="recycleList()">
+                    <i class="layui-icon layui-icon-delete"></i>回收站
+                </button>
             </div>
             <div id="notes">
                 <ul class="note-group-list" v-if="notes.length>0">
@@ -29,6 +32,17 @@
                     </li>
                 </ul>
                 <div style="margin-top: 10px;" v-else>暂无笔记</div>
+            </div>
+            <div id="recycleNotes" style="display: none">
+                <ul class="note-group-list">
+                    <li class="note-group-item" v-for="note in notes">
+                        <p class="name">{{note.title}}</p>
+                        <p class="time">{{toLocalTime(note.updateTime)}}</p>
+                    </li>
+                </ul>
+                <div style="margin-top: 10px;text-align: center" v-show="notes.length>0">
+                    <button class="layui-btn layui-btn-danger layui-btn-sm" @click="cleanNotes()">清空回收站</button>
+                </div>
             </div>
         </div>
         <div class="layui-col-md1">&nbsp;</div>
