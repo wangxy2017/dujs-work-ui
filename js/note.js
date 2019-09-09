@@ -2,17 +2,23 @@ layui.use(['layedit', 'form', 'layer'], function () {
     var layedit = layui.layedit;
     var form = layui.form;
     var layer = layui.layer;
-    //建立编辑器
+    // 建立编辑器
     var index = layedit.build('content', {
         height: 800 //设置编辑器高度
     });
+    // 自定义验证
+    form.verify({
+        content: function () {
+            layedit.sync(index);
+            var content = $("#content").val();
+            if (content == "") {
+                return "请输入笔记内容";
+            }
+        }
+    });
     //监听提交
     form.on('submit(saveNote)', function (data) {
-        post('/note/save', {
-            title: data.field.title,
-            "content": layedit.getContent(index),
-            category_id: data.field.category
-        }, function (result) {
+        post('/note/save', data.field, function (result) {
             if (result.code == 1) {
                 layer.msg("保存成功", {icon: 6});
                 vue.loadNoteList();
