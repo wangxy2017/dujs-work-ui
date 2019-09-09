@@ -26,10 +26,11 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         }
         , cols: [[ //表头
             {field: 'id', title: 'ID', width: 80}
+            , {field: 'name', title: '名称'}
             , {
                 field: 'href',
                 title: '链接',
-                templet: '<div><a href="javascript:;" class="layui-table-link" onclick="goto(\'{{d.href}}\')"><img src="{{d.icon}}" class="icon">{{d.name}}</a></div>'
+                templet: '<div><a href="javascript:;" class="layui-table-link" onclick="goto(\'{{d.href}}\')">{{d.href}}</a></div>'
             }
         ]]
     });
