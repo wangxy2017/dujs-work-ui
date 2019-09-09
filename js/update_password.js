@@ -16,7 +16,11 @@ layui.use(['form', 'layer'], function () {
     //监听提交
     form.on('submit(updatePwd)', function (data) {
         post('/user/password', data.field, function (result) {
-            layer.msg("修改成功", {icon: 1});
+            if (result.code == 1) {
+                layer.msg("修改成功", {icon: 1});
+            } else {
+                layer.msg(result.msg, {icon: 2});
+            }
         });
         return false;
     });

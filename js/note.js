@@ -13,22 +13,30 @@ layui.use(['layedit', 'form', 'layer'], function () {
             "content": layedit.getContent(index),
             category_id: data.field.category
         }, function (result) {
-            layer.msg("保存成功", {icon: 1});
-            vue.loadNoteList();
+            if (result.code == 1) {
+                layer.msg("保存成功", {icon: 1});
+                vue.loadNoteList();
+            } else {
+                layer.msg(result.msg, {icon: 2});
+            }
         });
         return false;
     });
     $(function () {
         // 加载分类
         get('/category/list', function (result) {
-            var list = result.data == null ? [] : result.data;
-            var html = "";
-            for (var i = 0; i < list.length; i++) {
-                html += ' <option value="' + list[i].id + '">' + list[i].name + '</option>';
+            if (result.code == 1) {
+                var list = result.data == null ? [] : result.data;
+                var html = "";
+                for (var i = 0; i < list.length; i++) {
+                    html += ' <option value="' + list[i].id + '">' + list[i].name + '</option>';
+                }
+                $("#category").append(html);
+                // 重新渲染
+                form.render("select");
+            } else {
+                layer.msg(result.msg, {icon: 2});
             }
-            $("#category").append(html);
-            // 重新渲染
-            form.render("select");
         });
     });
     // 笔记列表
@@ -43,7 +51,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
              */
             loadNoteList: function () {
                 get('/note/findAll/0', function (result) {
-                    vue.notes = result.data;
+                    if (result.code == 1) {
+                        vue.notes = result.data;
+                    }
                 });
             },
             /**
@@ -52,9 +62,13 @@ layui.use(['layedit', 'form', 'layer'], function () {
              */
             removeNote: function (id) {
                 layer.confirm('确认删除笔记吗？', function (index) {
-                    del('/note/' + id, function () {
-                        layer.msg("删除成功", {icon: 1});
-                        vue.loadNoteList();
+                    del('/note/' + id, function (result) {
+                        if (result.code == 1) {
+                            layer.msg("删除成功", {icon: 1});
+                            vue.loadNoteList();
+                        } else {
+                            layer.msg(result.msg, {icon: 2});
+                        }
                     });
                     layer.close(index);
                 });

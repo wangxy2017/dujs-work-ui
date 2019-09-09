@@ -61,8 +61,12 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
     window.deleteAll = function () {
         layer.confirm('确认清空书签吗？', function (index) {
             del('/bookmark/deleteAll', function (result) {
-                layer.msg("清除成功", {icon: 6});
-                tableList.reload();
+                if (result.code == 1) {
+                    layer.msg("清除成功", {icon: 6});
+                    tableList.reload();
+                } else {
+                    layer.msg(result.msg, {icon: 2});
+                }
             });
             layer.close(index);
         });
@@ -71,5 +75,6 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
      * 导出书签
      */
     window.exportAll = function () {
+        console.log("导出书签");
     };
 });

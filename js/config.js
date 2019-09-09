@@ -20,13 +20,9 @@ function get(url, callback) {
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
-            if (result.code == 1) {
-                callback(result);
-            } else {
-                layer.msg(result.msg, {icon: 2});
-            }
+            callback(result);
         },
-        error: function (result) {
+        error: function () {
             layer.msg("服务器错误", {icon: 2});
         }
     });
@@ -47,13 +43,9 @@ function post(url, data, callback) {
         contentType: "application/json;charset=utf-8",
         headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
-            if (result.code == 1) {
-                callback(result);
-            } else {
-                layer.msg(result.msg, {icon: 5});
-            }
+            callback(result);
         },
-        error: function (result) {
+        error: function () {
             layer.msg("服务器错误", {icon: 2});
         }
     });
@@ -71,13 +63,9 @@ function del(url, callback) {
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
-            if (result.code == 1) {
-                callback(result);
-            } else {
-                layer.msg(result.msg, {icon: 2});
-            }
+            callback(result);
         },
-        error: function (result) {
+        error: function () {
             layer.msg("服务器错误", {icon: 2});
         }
     });
