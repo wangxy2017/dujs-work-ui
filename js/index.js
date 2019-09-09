@@ -6,7 +6,7 @@ layui.use(['element', 'layer'], function () {
     $(function () {
         get('/user/query/' + window.localStorage.getItem("userId"), function (result) {
             if (result.code == 1) {
-                $("#username").text(result.data.username);
+                $("#username").text(subStr(result.data.username, 5));
             }
         });
     });

@@ -97,3 +97,9 @@ function toLocalTime(UTCDateString) {
     var dateStr = year + '-' + mon + '-' + day + ' ' + noon + ' ' + hour + ':' + min;
     return dateStr;
 }
+
+function subStr(text, max) {
+    if (text.length > max) {
+        return text.substring(0,max) + "...";
+    }
+}

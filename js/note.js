@@ -115,11 +115,14 @@ layui.use(['layedit', 'form', 'layer'], function () {
              * 清空回收站
              */
             cleanNotes: function () {
-                get('/note/clean', function (result) {
-                    if (result.code == 1) {
-                        recycle.notes = [];
-                    }
-                })
+                layer.confirm('确认清空回收站吗？', function (index) {
+                    get('/note/clean', function (result) {
+                        if (result.code == 1) {
+                            recycle.notes = [];
+                        }
+                    });
+                    layer.close(index);
+                });
             }
         },
         mounted: function () {
