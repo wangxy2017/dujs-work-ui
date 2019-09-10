@@ -19,15 +19,26 @@
         <legend>忘记密码？</legend>
     </fieldset>
     <blockquote class="layui-elem-quote">
-        <form class="layui-form" action="">
-            <div class="layui-form-item" style="margin-top: 15px;">
+        <form class="layui-form" action="" style="margin-top: 15px;">
+            <div class="layui-form-item">
+                <label class="layui-form-label">账号：</label>
+                <div class="layui-input-inline" style="width: 300px">
+                    <input type="text" name="username" required lay-verify="required" placeholder="输入账号"
+                           autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
                 <label class="layui-form-label">注册邮箱：</label>
                 <div class="layui-input-inline" style="width: 300px">
                     <input type="email" name="email" required lay-verify="required|email" placeholder="输入注册的邮箱"
                            autocomplete="off" class="layui-input">
                 </div>
-                <button class="layui-btn" lay-submit lay-filter="forgot">立即提交</button>
-                <a href="login.html" class="layui-btn layui-btn-primary">返回登录</a>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="forgot">立即提交</button>
+                    <a href="login.html" class="layui-btn layui-btn-primary">返回登录</a>
+                </div>
             </div>
         </form>
     </blockquote>
