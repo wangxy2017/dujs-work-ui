@@ -5,11 +5,10 @@ layui.use(['form', 'layer'], function () {
     form.on('submit(forgot)', function (data) {
         get('/login/forgot?email=' + data.field.email + "&username=" + data.field.username, function (result) {
             if (result.code == 1) {
-                layer.alert('新密码已发送至邮箱...', function (index) {
-                    //do something
+                layer.msg('新密码已发送至邮箱...', {icon: 6});
+                setTimeout(function () {
                     window.location.href = "login.html";
-                    layer.close(index);
-                });
+                }, 2000);
             } else {
                 layer.msg(result.msg, {icon: 5});
             }
