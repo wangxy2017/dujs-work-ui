@@ -20,6 +20,12 @@ function get(url, callback) {
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
+            if (result.msg == "未登录") {
+                // 清除token
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("userId");
+                window.top.location.href = "login.html";
+            }
             callback(result);
         },
         error: function () {
@@ -43,6 +49,12 @@ function post(url, data, callback) {
         contentType: "application/json;charset=utf-8",
         headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
+            if (result.msg == "未登录") {
+                // 清除token
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("userId");
+                window.top.location.href = "login.html";
+            }
             callback(result);
         },
         error: function () {
@@ -63,6 +75,12 @@ function del(url, callback) {
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
         success: function (result) {
+            if (result.msg == "未登录") {
+                // 清除token
+                window.localStorage.removeItem("token");
+                window.localStorage.removeItem("userId");
+                window.top.location.href = "login.html";
+            }
             callback(result);
         },
         error: function () {
@@ -100,6 +118,6 @@ function toLocalTime(UTCDateString) {
 
 function subStr(text, max) {
     if (text.length > max) {
-        return text.substring(0,max) + "...";
+        return text.substring(0, max) + "...";
     }
 }
