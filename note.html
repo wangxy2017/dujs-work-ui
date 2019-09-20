@@ -22,10 +22,11 @@
                 <button type="button" class="layui-btn layui-btn-primary" onclick="recycleList()">
                     <i class="layui-icon layui-icon-delete"></i>回收站
                 </button>
+                <button type="button" class="layui-btn" onclick="download()">下载笔记</button>
             </div>
             <div id="notes">
                 <ul class="note-group-list" v-if="notes.length>0">
-                    <li class="note-group-item" v-for="note in notes" @click="viewNote($event,note.id)">
+                    <li class="note-group-item" v-for="note in notes" @click="viewNote($event,note.id)" :data-id="note.id">
                         <p class="name">{{note.title}}</p>
                         <p class="time">{{toLocalTime(note.updateTime)}}</p>
                         <i class="remove layui-icon layui-icon-close-fill" @click.stop="removeNote(note.id)"></i>

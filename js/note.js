@@ -143,9 +143,16 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 layer.msg(result.msg, {icon: 5});
             }
         })
-    }
+    };
     window.showNotes = function () {
         $("#recycleNotes").hide();
         $("#notes").show();
-    }
+    };
+    window.download = function () {
+        var id = $(".note-group-list li.active").attr("data-id");
+        if (typeof id === "undefined") {
+            layer.msg("请选择笔记");
+            return false;
+        }
+    };
 });
