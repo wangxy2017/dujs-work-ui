@@ -84,7 +84,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
             /**
              * 查看笔记
              */
-            viewNote: function (id) {
+            viewNote: function (e, id) {
                 get('/note/content/' + id, function (result) {
                     if (result.code == 1) {
                         var note = result.data;
@@ -99,6 +99,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
                         layer.msg(result.msg, {icon: 5});
                     }
                 });
+                var _this = e.currentTarget;
+                $(_this).addClass("active").siblings().removeClass("active");
             }
         },
         mounted: function () {

@@ -1,5 +1,6 @@
 .note-group-list {
     margin-top: 10px;
+    width: 80%;
 }
 
 .note-group-list .note-group-item {
@@ -9,7 +10,11 @@
 }
 
 .note-group-list .note-group-item:hover {
-    background: #dddddd;
+    background: #f4f4f4;
+}
+
+.note-group-list .note-group-item.active {
+    background: #f4f4f4;
 }
 
 .note-group-list .note-group-item p {
