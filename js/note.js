@@ -138,12 +138,10 @@ layui.use(['layedit', 'form', 'layer'], function () {
             node.hide();
         }
     };
-    window.download = function () {
-        var id = $(".note-group-list li.active").attr("data-id");
-        if (typeof id === "undefined") {
-            layer.msg("请选择笔记");
-            return false;
-        }
+    window.newNote = function () {
+        // 表单重置
+        $("#noteForm")[0].reset();
+        layedit.setContent(index, "");
     };
     var noteCategories = new Vue({
         el: "#noteCategories",
