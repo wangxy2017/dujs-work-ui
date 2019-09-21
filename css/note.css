@@ -43,8 +43,8 @@
 .noteCategories{
     z-index: 9999;
     position: absolute;
-    top: 36px;
-    left: -5px;
+    top: 42px;
+    left: -4px;
     width: 340px;
     border: 1px solid #c8ccd3;
     border-radius: 2px;
