@@ -44,6 +44,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
         , done: function (res) {
             // 上传成功
             if (res.code == 1) {
+                layer.msg("导入成功", {icon: 6});
                 tableList.reload();
             } else {
                 layer.msg(res.msg, {icon: 5});

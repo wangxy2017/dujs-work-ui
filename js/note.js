@@ -34,7 +34,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
     });
     $(function () {
         // 加载分类
-        get('/category/list', function (result) {
+        get('/category/findAll', function (result) {
             if (result.code == 1) {
                 var list = result.data == null ? [] : result.data;
                 var html = '<option value="">请选择</option>';
@@ -154,33 +154,5 @@ layui.use(['layedit', 'form', 'layer'], function () {
             layer.msg("请选择笔记");
             return false;
         }
-    };
-    window.addCategory = function () {
-        layer.prompt({title: '分类名称', maxlength: 20}, function (value, index, elem) {
-            post('/category/save', {"name": value}, function (result) {
-                if (result.code == 1) {
-                    layer.msg("保存成功", {icon: 6});
-                    // 加载分类
-                    get('/category/list', function (result) {
-                        if (result.code == 1) {
-                            var list = result.data == null ? [] : result.data;
-                            var html = '<option value="">请选择</option>';
-                            for (var i = 0; i < list.length; i++) {
-                                html += ' <option value="' + list[i].id + '">' + list[i].name + '</option>';
-                            }
-                            $("#category").empty().append(html);
-                            // 重新渲染
-                            form.render("select");
-                        }
-                    });
-                } else {
-                    layer.msg(result.msg, {icon: 5});
-                }
-            });
-            layer.close(index);
-        });
-    };
-    window.loadCategories = function () {
-
     };
 });
