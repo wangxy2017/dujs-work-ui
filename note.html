@@ -16,12 +16,9 @@
 <body>
 <div class="main">
     <div class="layui-row">
-        <div class="layui-col-md2">
+        <div class="layui-col-md2" style="position: relative">
             <div class="layui-btn-container">
-                <button type="button" class="layui-btn" onclick="showNotes()">全部分类</button>
-                <button type="button" class="layui-btn layui-btn-primary" onclick="recycleList()">
-                    <i class="layui-icon layui-icon-delete"></i>回收站
-                </button>
+                <button type="button" class="layui-btn" onclick="showNoteCategories()">笔记分组</button>
                 <button type="button" class="layui-btn" onclick="download()">下载笔记</button>
             </div>
             <div id="notes">
@@ -44,6 +41,23 @@
                 <div style="margin-top: 10px;padding-left: 16px;" v-show="notes.length>0">
                     <button class="layui-btn layui-btn-primary layui-btn-sm" @click="cleanNotes()">清空回收站</button>
                 </div>
+            </div>
+            <div class="noteCategories" id="noteCategories">
+                <div class="title"><span>笔记分组</span></div>
+                <ul class="category-group">
+                    <li class="category-group-item active" @click="getNotes($event,-2)">
+                        <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                        <span class="item-text">全部笔记</span>
+                    </li>
+                    <li class="category-group-item" v-for="c in categories" @click="getNotes($event,c.id)">
+                        <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                        <span class="item-text" v-text="c.name"></span>
+                    </li>
+                    <li class="category-group-item" @click="getNotes($event,-1)">
+                        <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                        <span class="item-text">回收站</span>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="layui-col-md10">

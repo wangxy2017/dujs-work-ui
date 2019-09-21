@@ -130,23 +130,13 @@ layui.use(['layedit', 'form', 'layer'], function () {
         mounted: function () {
         }
     });
-    /**
-     * 回收站
-     */
-    window.recycleList = function () {
-        get('/note/recycle', function (result) {
-            if (result.code == 1) {
-                recycle.notes = result.data;
-                $("#recycleNotes").show();
-                $("#notes").hide();
-            } else {
-                layer.msg(result.msg, {icon: 5});
-            }
-        })
-    };
-    window.showNotes = function () {
-        $("#recycleNotes").hide();
-        $("#notes").show();
+    window.showNoteCategories = function () {
+        var node = $("#noteCategories");
+        if(node.is(":hidden")){
+            node.show();
+        }else{
+            node.hide();
+        }
     };
     window.download = function () {
         var id = $(".note-group-list li.active").attr("data-id");
@@ -155,4 +145,52 @@ layui.use(['layedit', 'form', 'layer'], function () {
             return false;
         }
     };
+    var noteCategories = new Vue({
+        el: "#noteCategories",
+        data: {categories:[]},
+        methods: {
+            getNotes: function (e,id) {
+                if (id == -1) {// 查看回收站笔记
+                    get('/note/recycle', function (result) {
+                        if (result.code == 1) {
+                            recycle.notes = result.data;
+                            $("#recycleNotes").show();
+                            $("#notes").hide();
+                        } else {
+                            layer.msg(result.msg, {icon: 5});
+                        }
+                    });
+                }else if(id == -2){// 全部笔记
+                    get('/note/findAll/0', function (result) {
+                        if (result.code == 1) {
+                            vue.notes = result.data;
+                        }
+                    });
+                    $("#recycleNotes").hide();
+                    $("#notes").show();
+                }else{
+                    get('/note/findAll/'+id, function (result) {
+                        if (result.code == 1) {
+                            vue.notes = result.data;
+                        }
+                    });
+                    $("#recycleNotes").hide();
+                    $("#notes").show();
+                }
+                // 弹出框消失
+                $("#noteCategories").hide();
+                var _this = e.currentTarget;
+                $(_this).addClass("active").siblings().removeClass("active");
+            }
+        },
+        mounted: function () {
+            // 加载分类
+            get('/category/findAll', function (result) {
+                if (result.code == 1) {
+                    noteCategories.categories = result.data;
+                }
+            });
+        }
+    });
+
 });

@@ -39,3 +39,56 @@
 .note-group-list .note-group-item:hover .remove {
     display: initial;
 }
+
+.noteCategories{
+    z-index: 9999;
+    position: absolute;
+    top: 36px;
+    left: -5px;
+    width: 340px;
+    border: 1px solid #c8ccd3;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px 0 rgba(15,32,65,.2);
+    background: white;
+    display: none;
+}
+.noteCategories .title{
+    height: 54px;
+    line-height: 54px;
+    margin-top: 6px;
+    padding-left: 20px;
+}
+.noteCategories .category-group{
+    margin-bottom: 60px;
+}
+.noteCategories .category-group .category-group-item{
+    height: 48px;
+    line-height: 48px;
+    padding-left: 22px;
+    position: relative;
+}
+.noteCategories .category-group .category-group-item:hover{
+    background: #f4f4f4;
+}
+.noteCategories .category-group .category-group-item .item-icon{
+    position: absolute;
+    top: 0;
+    left: 22px;
+    display: none;
+}
+.noteCategories .category-group .category-group-item .item-text{
+    margin-left: 40px;
+    display: block;
+}
+.noteCategories .category-group .category-group-item:first-child .item-text{
+    border-bottom: 1px solid #e8eaeb;
+}
+.noteCategories .category-group .category-group-item:last-child .item-text{
+    border-top: 1px solid #e8eaeb;
+}
+.noteCategories .category-group .category-group-item.active{
+    color:#009687;
+}
+.noteCategories .category-group .category-group-item.active .item-icon{
+    display: inline;
+}
