@@ -41,8 +41,8 @@
                         <p class="time">{{toLocalTime(note.updateTime)}}</p>
                     </li>
                 </ul>
-                <div style="margin-top: 10px;text-align: center" v-show="notes.length>0">
-                    <button class="layui-btn layui-btn-danger layui-btn-sm" @click="cleanNotes()">清空回收站</button>
+                <div style="margin-top: 10px;padding-left: 16px;" v-show="notes.length>0">
+                    <button class="layui-btn layui-btn-primary layui-btn-sm" @click="cleanNotes()">清空回收站</button>
                 </div>
             </div>
         </div>
