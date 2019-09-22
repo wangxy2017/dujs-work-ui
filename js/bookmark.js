@@ -79,7 +79,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
      * 导出书签
      */
     window.exportAll = function () {
-        console.log("导出书签");
+        window.location.href = getPort() + "/bookmark/download/" + window.localStorage.getItem("userId");
     };
     /**
      * 新窗口
