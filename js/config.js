@@ -26,7 +26,7 @@ function get(url, callback) {
                 window.localStorage.removeItem("userId");
                 window.top.location.href = "login.html";
             }
-            callback(result);
+            callback&&callback(result);
         },
         error: function () {
             layer.msg("服务器错误", {icon: 2});
@@ -55,7 +55,7 @@ function post(url, data, callback) {
                 window.localStorage.removeItem("userId");
                 window.top.location.href = "login.html";
             }
-            callback(result);
+            callback&&callback(result);
         },
         error: function () {
             layer.msg("服务器错误", {icon: 2});
@@ -81,7 +81,7 @@ function del(url, callback) {
                 window.localStorage.removeItem("userId");
                 window.top.location.href = "login.html";
             }
-            callback(result);
+            callback&&callback(result);
         },
         error: function () {
             layer.msg("服务器错误", {icon: 2});
