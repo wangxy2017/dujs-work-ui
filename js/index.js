@@ -1,3 +1,4 @@
+var giveIdea;
 //JavaScript代码区域
 layui.use(['element', 'layer', 'form'], function () {
     var element = layui.element;
@@ -6,15 +7,9 @@ layui.use(['element', 'layer', 'form'], function () {
 
     //监听提交
     form.on('submit(submitIdea)', function (data) {
-        post('/user/idea',data.field,function (result) {
-            if (result.code == 1) {
-                layer.msg("提交成功", {icon: 6});
-            } else {
-                layer.msg(result.msg, {icon: 5});
-            }
-        });
-        var index = layer.getFrameIndex(window.name);
-        layer.close(index); //关闭弹出层
+        post('/user/idea',data.field,function (result) {});
+        layer.close(giveIdea);
+        layer.msg('提交成功', {icon: 6});
         return false;
     });
     $(function () {
@@ -48,11 +43,15 @@ layui.use(['element', 'layer', 'form'], function () {
      * 意见反馈
      */
     window.tellIdeas = function () {
-        layer.open({
-            type: 1
-            , title: "意见反馈"
-            , area: ['800px', '500px']
-            , content: $('#giveIdea') //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+        giveIdea = layer.open({
+            type: 1,
+            title: "意见反馈",
+            content: $('#giveIdea'),
+            area: ["800px", "500px"],
+            end: function () {
+                // 重置表单
+                $("#giveIdea").find("form")[0].reset();
+            }
         });
     };
 });
