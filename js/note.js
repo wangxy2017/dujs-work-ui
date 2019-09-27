@@ -141,6 +141,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
     window.newNote = function () {
         // 表单重置
         $("#noteForm")[0].reset();
+        $("#id").val("");
         layedit.setContent(index, "");
     };
     var noteCategories = new Vue({
