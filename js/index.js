@@ -18,11 +18,9 @@ layui.use(['element', 'layer', 'form'], function () {
             if (result.code == 1) {
                 var nickName = result.data.nickName;
                 var username = result.data.username;
-                var photo = result.data.phone;
-                $("#username").text(subStr(isEmpty(nickName) ? username : nickName, 5));
-                if (isEmpty(photo)) {
-                    $("#photo").attr("src", photo);
-                }
+                var photo = result.data.photo;
+                $("#username").text(subStr(isEmpty(nickName) ? username : nickName), 5);
+                $("#photo").attr("src", isEmpty(photo) ? "http://t.cn/RCzsdCq" : photo);
             }
         });
     });
