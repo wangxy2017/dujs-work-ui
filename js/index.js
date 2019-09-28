@@ -7,7 +7,8 @@ layui.use(['element', 'layer', 'form'], function () {
 
     //监听提交
     form.on('submit(submitIdea)', function (data) {
-        post('/user/idea',data.field,function (result) {});
+        post('/user/idea', data.field, function (result) {
+        });
         layer.close(giveIdea);
         layer.msg('提交成功', {icon: 6});
         return false;
@@ -15,7 +16,13 @@ layui.use(['element', 'layer', 'form'], function () {
     $(function () {
         get('/user/query/' + window.localStorage.getItem("userId"), function (result) {
             if (result.code == 1) {
-                $("#username").text(subStr(result.data.username, 5));
+                var nickName = result.data.nickName;
+                var username = result.data.username;
+                var photo = result.data.phone;
+                $("#username").text(subStr(isEmpty(nickName) ? username : nickName, 5));
+                if (isEmpty(photo)) {
+                    $("#photo").attr("src", photo);
+                }
             }
         });
     });
