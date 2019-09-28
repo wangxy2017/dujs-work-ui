@@ -18,7 +18,7 @@
     <div class="layui-row">
         <div class="layui-col-md2" style="position: relative">
             <div class="layui-btn-container">
-                <button type="button" class="layui-btn" onclick="showNoteCategories()">笔记分组</button>
+                <button type="button" class="layui-btn" onclick="showNoteCategories()">笔记分类</button>
                 <button type="button" class="layui-btn" onclick="newNote()"><i class="layui-icon layui-icon-edit"></i>新建笔记</button>
             </div>
             <div id="notes">
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="noteCategories" id="noteCategories">
-                <div class="title"><span>笔记分组</span></div>
+                <div class="title"><span>笔记分类</span></div>
                 <ul class="category-group">
                     <li class="category-group-item active" @click="getNotes($event,-2)">
                         <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
