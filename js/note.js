@@ -46,6 +46,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 form.render("select");
             }
         });
+        // 初始化滚动条
+        $("#scroll").niceScroll();
     });
     // 笔记列表
     var vue = new Vue({
@@ -132,9 +134,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
     });
     window.showNoteCategories = function () {
         var node = $("#noteCategories");
-        if(node.is(":hidden")){
+        if (node.is(":hidden")) {
             node.show();
-        }else{
+        } else {
             node.hide();
         }
     };
@@ -146,9 +148,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
     };
     var noteCategories = new Vue({
         el: "#noteCategories",
-        data: {categories:[]},
+        data: {categories: []},
         methods: {
-            getNotes: function (e,id) {
+            getNotes: function (e, id) {
                 if (id == -1) {// 查看回收站笔记
                     get('/note/recycle', function (result) {
                         if (result.code == 1) {
@@ -159,7 +161,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
                             layer.msg(result.msg, {icon: 5});
                         }
                     });
-                }else if(id == -2){// 全部笔记
+                } else if (id == -2) {// 全部笔记
                     get('/note/findAll/0', function (result) {
                         if (result.code == 1) {
                             vue.notes = result.data;
@@ -167,8 +169,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
                     });
                     $("#recycleNotes").hide();
                     $("#notes").show();
-                }else{
-                    get('/note/findAll/'+id, function (result) {
+                } else {
+                    get('/note/findAll/' + id, function (result) {
                         if (result.code == 1) {
                             vue.notes = result.data;
                         }
