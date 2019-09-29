@@ -23,15 +23,13 @@ layui.use(['layedit', 'form', 'layer'], function () {
             if (result.code == 1) {
                 layer.msg("保存成功", {icon: 6});
                 vue.loadNoteList();
-                // 表单重置
-                $("#noteForm")[0].reset();
-                layedit.setContent(index, "");
             } else {
                 layer.msg(result.msg, {icon: 5});
             }
         });
         return false;
     });
+    // 页面加载完成执行
     $(function () {
         // 加载分类
         get('/category/findAll', function (result) {
@@ -140,11 +138,17 @@ layui.use(['layedit', 'form', 'layer'], function () {
             node.hide();
         }
     };
-    window.newNote = function () {
-        // 表单重置
+    /**
+     * 重置表单
+     */
+    window.resetForm = function () {
         $("#noteForm")[0].reset();
         $("#id").val("");
         layedit.setContent(index, "");
+    };
+    window.newNote = function () {
+        // 表单重置
+        resetForm();
     };
     var noteCategories = new Vue({
         el: "#noteCategories",
