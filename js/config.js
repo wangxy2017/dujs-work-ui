@@ -19,6 +19,10 @@ function get(url, callback) {
         url: getPort() + url,
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
         success: function (result) {
             if (result.msg == "未登录") {
                 // 清除token
@@ -48,6 +52,10 @@ function post(url, data, callback) {
         data: JSON.stringify(data),
         contentType: "application/json;charset=utf-8",
         headers: {"Token": window.localStorage.getItem("token")},
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
         success: function (result) {
             if (result.msg == "未登录") {
                 // 清除token
@@ -74,6 +82,10 @@ function del(url, callback) {
         url: getPort() + url,
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
+        xhrFields: {
+            withCredentials: true
+        },
+        crossDomain: true,
         success: function (result) {
             if (result.msg == "未登录") {
                 // 清除token
