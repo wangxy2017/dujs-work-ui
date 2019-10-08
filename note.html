@@ -19,7 +19,18 @@
             bottom: 0;
             width: 300px;
             padding: 10px;
-            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .main .main-left .note-actions {
+            position: relative;
+            height: 50px;
+            box-sizing: border-box;
+        }
+
+        #scroll {
+            height: calc(100% - 50px) !important;
+            overflow: hidden;
             box-sizing: border-box;
         }
 
@@ -38,10 +49,11 @@
 <body>
 <div class="main">
     <div class="main-left">
-        <div class="note-actions" style="position: relative">
+        <div class="note-actions">
             <div class="layui-btn-container">
                 <button type="button" class="layui-btn" onclick="showNoteCategories()">笔记分类</button>
-                <button type="button" class="layui-btn" onclick="newNote()"><i class="layui-icon layui-icon-edit"></i>新建笔记</button>
+                <button type="button" class="layui-btn" onclick="newNote()"><i class="layui-icon layui-icon-edit"></i>新建笔记
+                </button>
             </div>
             <!--     分类列表       -->
             <div class="noteCategories" id="noteCategories">
