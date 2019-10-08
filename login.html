@@ -100,10 +100,27 @@
             </div>
             <div class="layui-col-sm12 layui-col-md12">
                 <div class="layui-form-item">
-                    <input type="email" name="email" lay-verify="required|email|checkEmail" autocomplete="off"
+                    <input type="email" name="email" id="email" lay-verify="required|email|checkEmail"
+                           autocomplete="off"
                            placeholder="邮箱"
                            class="layui-input">
                     <i class="layui-icon layui-icon-face-smile-fine zyl_lofo_icon"></i>
+                </div>
+            </div>
+            <div class="layui-col-sm12 layui-col-md12">
+                <div class="layui-row">
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <div class="layui-form-item">
+                            <input type="text" name="code" lay-verify="required"
+                                   autocomplete="off" placeholder="验证码" class="layui-input" maxlength="4">
+                            <i class="layui-icon layui-icon-vercode zyl_lofo_icon"></i>
+                        </div>
+                    </div>
+                    <div class="layui-col-xs4 layui-col-sm4 layui-col-md4">
+                        <button type="button" id="sendCode" class="layui-btn" style="margin-left: 10px;"
+                                onclick="getCode()">发送验证码
+                        </button>
+                    </div>
                 </div>
             </div>
             <div class="layui-col-sm12 layui-col-md12">

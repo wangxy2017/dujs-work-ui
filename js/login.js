@@ -69,7 +69,7 @@ layui.use(['carousel', 'form', 'layer'], function () {
         return false;
     });
     //粒子线条
-    $(".zyl_login_cont").css({"height":$(window).height()/1.3}).jParticle({
+    $(".zyl_login_cont").css({"height": $(window).height() / 1.3}).jParticle({
         background: "rgba(0,0,0,0)",//背景颜色
         color: "#fff",//粒子和连线的颜色
         particlesNumber: 100,//粒子数量
@@ -84,9 +84,43 @@ layui.use(['carousel', 'form', 'layer'], function () {
     window.showRegister = function () {
         $("#register").show();
         $("#login").hide();
-    }
+    };
     window.showLogin = function () {
         $("#login").show();
         $("#register").hide();
+    };
+    /**
+     * 发送验证码
+     */
+    window.getCode = function () {
+        var _this = $("#sendCode");
+        if (_this.hasClass("layui-btn-disabled")) {
+            return false;
+        }
+        var email = $("#email").val();
+        if (isEmpty(email)) {
+            layer.msg("请输入邮箱", {icon: 5});
+            return false;
+        }
+        get('/register/getCode?email=' + email, function (result) {
+            if (result.code == 1) {
+                layer.msg("验证码已发送至邮箱，请前往查看...", {icon: 6});
+            } else {
+                layer.msg(result.msg, {icon: 5});
+            }
+        });
+        // 启动计时器
+        var time = 30;
+        _this.addClass("layui-btn-disabled");
+        var timer = setInterval(() => {
+            time--;
+            _this.text(time + ' 秒');
+            if (time === 0) {
+                clearInterval(timer);
+                _this.text('重新获取');
+                _this.removeClass("layui-btn-disabled")
+            }
+        }, 1000);
+
     }
 });
