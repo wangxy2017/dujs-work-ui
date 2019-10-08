@@ -45,7 +45,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
             }
         });
         // 初始化滚动条
-        $("#scroll").slimScroll({height: '850px',wheelStep: 10});
+        // $("#scroll").slimScroll({height: '400px',wheelStep: 10});
     });
     // 笔记列表
     var vue = new Vue({

@@ -9,44 +9,41 @@
     <link rel="stylesheet" href="css/note.css">
     <style>
         .main {
+            position: relative;
+        }
+
+        .main .main-left {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 300px;
             padding: 10px;
+            overflow-y: auto;
+            box-sizing: border-box;
+        }
+
+        .main .main-right {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 300px;
+            padding: 10px;
+            overflow-y: auto;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body>
 <div class="main">
-    <div class="layui-row">
-        <div class="layui-col-md2" style="position: relative">
+    <div class="main-left">
+        <div class="note-actions" style="position: relative">
             <div class="layui-btn-container">
                 <button type="button" class="layui-btn" onclick="showNoteCategories()">笔记分类</button>
-                <button type="button" class="layui-btn" onclick="newNote()"><i class="layui-icon layui-icon-edit"></i>新建笔记
-                </button>
+                <button type="button" class="layui-btn" onclick="newNote()"><i class="layui-icon layui-icon-edit"></i>新建笔记</button>
             </div>
-            <div id="scroll">
-                <div id="notes">
-                    <ul class="note-group-list" v-if="notes.length>0">
-                        <li class="note-group-item" v-for="note in notes" @click="viewNote($event,note.id)"
-                            :data-id="note.id">
-                            <p class="name">{{note.title}}</p>
-                            <p class="time">{{toLocalTime(note.updateTime)}}</p>
-                            <i class="remove layui-icon layui-icon-close-fill" @click.stop="removeNote(note.id)"></i>
-                        </li>
-                    </ul>
-                    <div style="margin-top: 10px;" v-else>暂无笔记</div>
-                </div>
-                <div id="recycleNotes" style="display: none">
-                    <ul class="note-group-list" v-if="notes.length>0">
-                        <li class="note-group-item" v-for="note in notes">
-                            <p class="name">{{note.title}}</p>
-                            <p class="time">{{toLocalTime(note.updateTime)}}</p>
-                        </li>
-                    </ul>
-                    <div style="margin-top: 10px;" v-else>暂无笔记</div>
-                    <div style="margin-top: 10px;padding-left: 16px;" v-show="notes.length>0">
-                        <button class="layui-btn layui-btn-primary layui-btn-sm" @click="cleanNotes()">清空回收站</button>
-                    </div>
-                </div>
-            </div>
+            <!--     分类列表       -->
             <div class="noteCategories" id="noteCategories">
                 <div class="title"><span>笔记分类</span></div>
                 <ul class="category-group">
@@ -65,31 +62,56 @@
                 </ul>
             </div>
         </div>
-        <div class="layui-col-md10">
-            <form class="layui-form" action="" id="noteForm" lay-filter="noteForm">
-                <input type="hidden" id="id" name="id">
-                <div class="layui-form-item">
-                    <input type="text" name="title" required lay-verify="required" placeholder="输入笔记标题"
-                           autocomplete="off" class="layui-input" title="输入笔记标题">
+        <div id="scroll">
+            <div id="notes">
+                <ul class="note-group-list" v-if="notes.length>0">
+                    <li class="note-group-item" v-for="note in notes" @click="viewNote($event,note.id)"
+                        :data-id="note.id">
+                        <p class="name">{{note.title}}</p>
+                        <p class="time">{{toLocalTime(note.updateTime)}}</p>
+                        <i class="remove layui-icon layui-icon-close-fill" @click.stop="removeNote(note.id)"></i>
+                    </li>
+                </ul>
+                <div style="margin-top: 10px;" v-else>暂无笔记</div>
+            </div>
+            <div id="recycleNotes" style="display: none">
+                <ul class="note-group-list" v-if="notes.length>0">
+                    <li class="note-group-item" v-for="note in notes">
+                        <p class="name">{{note.title}}</p>
+                        <p class="time">{{toLocalTime(note.updateTime)}}</p>
+                    </li>
+                </ul>
+                <div style="margin-top: 10px;" v-else>暂无笔记</div>
+                <div style="margin-top: 10px;padding-left: 16px;" v-show="notes.length>0">
+                    <button class="layui-btn layui-btn-primary layui-btn-sm" @click="cleanNotes()">清空回收站</button>
                 </div>
-                <div class="layui-form-item">
-                    <textarea id="content" name="content" style="display: none;" lay-verify="content"></textarea>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="text-align: left;padding: 9px 0;">选择分类：</label>
-                    <div class="layui-input-inline">
-                        <select name="category_id" lay-verify="required" id="category">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-inline">
-                        <button class="layui-btn" lay-submit lay-filter="saveNote">保存笔记</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
+    </div>
+    <div class="main-right">
+        <form class="layui-form" action="" id="noteForm" lay-filter="noteForm">
+            <input type="hidden" id="id" name="id">
+            <div class="layui-form-item">
+                <input type="text" name="title" required lay-verify="required" placeholder="输入笔记标题"
+                       autocomplete="off" class="layui-input" title="输入笔记标题">
+            </div>
+            <div class="layui-form-item">
+                <textarea id="content" name="content" style="display: none;" lay-verify="content"></textarea>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="text-align: left;padding: 9px 0;">选择分类：</label>
+                <div class="layui-input-inline">
+                    <select name="category_id" lay-verify="required" id="category">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <button class="layui-btn" lay-submit lay-filter="saveNote">保存笔记</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 <script src="jquery/jquery.min.js"></script>
