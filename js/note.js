@@ -58,7 +58,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
              * 加载笔记列表
              */
             loadNoteList: function () {
-                get('/note/findAll/0', function (result) {
+                get('/note/findAll', function (result) {
                     if (result.code == 1) {
                         vue.notes = result.data;
                     }
@@ -166,7 +166,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
                         }
                     });
                 } else if (id == -2) {// 全部笔记
-                    get('/note/findAll/0', function (result) {
+                    get('/note/findAll', function (result) {
                         if (result.code == 1) {
                             vue.notes = result.data;
                         }
@@ -174,7 +174,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
                     $("#recycleNotes").hide();
                     $("#notes").show();
                 } else {
-                    get('/note/findAll/' + id, function (result) {
+                    get('/note/findAll?category_id=' + id, function (result) {
                         if (result.code == 1) {
                             vue.notes = result.data;
                         }
