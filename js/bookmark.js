@@ -31,9 +31,29 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
                 title: '链接',
                 templet: '<div><a href="javascript:;" class="layui-table-link" onclick="goto(\'{{d.href}}\')">{{d.href}}</a></div>'
             }
+            , {title: '操作', fixed: 'right', align: 'center', toolbar: '#options', width: 120}
         ]]
     });
+    // 监听工具条
+    table.on('tool(bookmarkList)', function (obj) {
+        var data = obj.data; // 获得当前行数据
+        var layEvent = obj.event; // 获得 lay-event 对应的值
 
+        // 删除书签
+        if (layEvent === 'delete') {
+            layer.confirm('确认删除书签吗？', function (index) {
+                del("/bookmark/" + data.id, function (result) {
+                    if (result.code == 1) {
+                        layer.msg("删除成功", {icon: 6});
+                        tableList.reload();
+                    } else {
+                        layer.msg(result.msg, {icon: 5});
+                    }
+                });
+                layer.close(index);
+            });
+        }
+    });
     //导入书签
     var uploadInst = upload.render({
         elem: '#import' //绑定元素
