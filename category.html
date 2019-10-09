@@ -10,6 +10,19 @@
         .main {
             padding: 10px;
         }
+        .search-form {
+            display: inline-block;
+        }
+
+        .search-form .search-form-item {
+            margin-bottom: unset;
+        }
+
+        .search-form .search-form-item .search-form-label {
+            width: auto;
+            padding-left: 0;
+            padding-right: 0;
+        }
     </style>
 </head>
 <body>
@@ -17,18 +30,16 @@
     <div class="layui-btn-container">
         <button type="button" class="layui-btn" onclick="addCategory()"><i class="layui-icon layui-icon-add-circle"></i>新增分类</button>
     </div>
-    <from class="layui-form">
-        <div class="layui-inline">
-            搜索分类：
+    <form class="layui-form search-form" action="">
+        <div class="layui-form-item search-form-item">
+            <label class="layui-form-label search-form-label">分类名称：</label>
             <div class="layui-input-inline">
-                <input type="text" name="name"
-                       placeholder="搜索分类..." autocomplete="off" class="layui-input">
+                <input type="text" name="name" required lay-verify="required" placeholder="搜索书签..."
+                       autocomplete="off" class="layui-input">
             </div>
-        </div>
-        <div class="layui-inline">
             <button class="layui-btn" lay-submit lay-filter="search">搜索</button>
         </div>
-    </from>
+    </form>
     <table id="categoryList" lay-filter="categoryList"></table>
     <script type="text/html" id="options">
         <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="update">修改</a>
