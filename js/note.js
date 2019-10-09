@@ -29,6 +29,14 @@ layui.use(['layedit', 'form', 'layer'], function () {
         });
         return false;
     });
+    form.on('submit(searchBtn)', function (data) {
+        get('/note/findAll?title=' + data.field.title, function (result) {
+            if (result.code == 1) {
+                vue.notes = result.data;
+            }
+        });
+        return false;
+    });
     // 页面加载完成执行
     $(function () {
         // 加载分类

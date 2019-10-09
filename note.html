@@ -24,12 +24,12 @@
 
         .main .main-left .note-actions {
             position: relative;
-            height: 50px;
+            height: 90px;
             box-sizing: border-box;
         }
 
         #scroll {
-            height: calc(100% - 50px) !important;
+            height: calc(100% - 90px) !important;
             overflow: hidden;
             box-sizing: border-box;
         }
@@ -55,6 +55,17 @@
                 <button type="button" class="layui-btn" onclick="newNote()"><i class="layui-icon layui-icon-edit"></i>新建笔记
                 </button>
             </div>
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <input type="text" name="title" required lay-verify="required" placeholder="请输入笔记标题"
+                               autocomplete="off" class="layui-input">
+                    </div>
+                    <button class="layui-btn layui-btn-sm" lay-submit lay-filter="searchBtn" style="margin-top: 4px;">
+                        搜索笔记
+                    </button>
+                </div>
+            </form>
             <!--     分类列表       -->
             <div class="noteCategories" id="noteCategories">
                 <div class="title"><span>笔记分类</span></div>
