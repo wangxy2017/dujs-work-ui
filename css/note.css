@@ -82,6 +82,7 @@
 }
 .noteCategories .category-group {
     height: 480px;
+    overflow-y: auto;
 }
 
 .noteCategories .category-group .category-group-item {

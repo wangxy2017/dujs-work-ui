@@ -57,7 +57,6 @@ layui.use(['layedit', 'form', 'layer'], function () {
         loadCategorySelect();
         // 初始化滚动条
         $("#scroll").slimScroll({height: $("#scroll").height(), wheelStep: 10});
-        $("#category-group").slimScroll({height: $("#category-group").height(), wheelStep: 10});
     });
     // 笔记列表
     var vue = new Vue({
