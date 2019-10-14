@@ -113,19 +113,16 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 var _this = e.currentTarget;
                 $(_this).addClass("active").siblings().removeClass("active");
             },
+            /**
+             * 预览笔记
+             * @param id
+             */
             viewNote: function (id) {
                 get('/note/content/' + id, function (result) {
                     if (result.code == 1) {
-                        $("#noteContent").html(result.data.content);
-                        var index = layer.open({
-                            type: 1,
-                            content: $("#noteContent"),
-                            area: ['100%', '100%'],
-                            title: false,
-                            success: function (layero, index) {
-                                layero.find(".layui-layer-setwin").css({"top": "30px", "right": "30px"});
-                            }
-                        });
+                        $("#noteContent").show();
+                        noteContent.title = result.data.title;
+                        noteContent.content = result.data.content;
                     } else {
                         layer.msg(result.msg, {icon: 5});
                     }
@@ -191,6 +188,21 @@ layui.use(['layedit', 'form', 'layer'], function () {
         // 表单重置
         resetForm();
     };
+    var noteContent = new Vue({
+        el: "#noteContent",
+        data: {title: "", content: ""},
+        methods: {
+            /**
+             * 关闭预览
+             */
+            closeDiv: function () {
+                $("#noteContent").hide();
+            }
+        },
+        mounted: function () {
+
+        }
+    });
     var noteCategories = new Vue({
         el: "#noteCategories",
         data: {categories: []},

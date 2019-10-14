@@ -71,15 +71,18 @@
     margin-top: 6px;
     padding-left: 20px;
 }
-.noteCategories .title .add{
+
+.noteCategories .title .add {
     display: inline-block;
     float: right;
     margin-right: 16px;
     cursor: pointer;
 }
-.noteCategories .title .add:hover{
+
+.noteCategories .title .add:hover {
     color: #009688;
 }
+
 .noteCategories .category-group {
     height: 480px;
     overflow-y: auto;
@@ -143,4 +146,106 @@
 
 .noteCategories .category-group .category-group-item.active .item-icon {
     display: inline;
+}
+
+.noteContent {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 99999;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.noteContent {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    z-index: 99999;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.noteContent .title {
+    line-height: 26px;
+    position: relative;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+.noteContent .title .label {
+    position: absolute;
+    display: inline-block;
+    background: #009687;
+    width: 8px;
+    left: 0;
+    top: 0;
+}
+
+.noteContent .title .text {
+    font-weight: bold;
+}
+
+.noteContent .title .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.noteContent .title .close:hover {
+    color: #009687;
+}
+
+.noteContent .body {
+    line-height: 26px;
+}
+
+.noteContent .title {
+    line-height: 32px;
+    position: relative;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+.noteContent .title .label {
+    position: absolute;
+    display: inline-block;
+    background: #009687;
+    width: 8px;
+    left: 0;
+    top: 0;
+}
+
+.noteContent .title .text {
+    font-weight: bold;
+}
+
+.noteContent .title .close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.noteContent .title .close:hover {
+    color: #009687;
+}
+
+.noteContent .body {
+    line-height: 32px;
 }

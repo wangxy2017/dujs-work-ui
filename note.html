@@ -150,7 +150,15 @@
         </form>
     </div>
 </div>
-<div id="noteContent" style="padding: 10px;display: none;"></div>
+<!-- 预览笔记 -->
+<div id="noteContent" class="noteContent">
+    <div class="title">
+        <span class="label">&nbsp;</span>
+        <span class="text" v-text="title"></span>
+        <i class="close layui-icon layui-icon-close" @click="closeDiv"></i>
+    </div>
+    <div class="body" v-html="content"></div>
+</div>
 <script src="jquery/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
 <script src="vue/vue.min.js"></script>
