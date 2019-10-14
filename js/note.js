@@ -111,6 +111,22 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 $(_this).addClass("active").siblings().removeClass("active");
             },
             viewNote: function (id) {
+                get('/note/content/' + id, function (result) {
+                    if (result.code == 1) {
+                        $("#noteContent").html(result.data.content);
+                        var index = layer.open({
+                            type: 1,
+                            content: $("#noteContent"),
+                            area: ['100%', '100%'],
+                            title: false,
+                            success: function (layero, index) {
+                                layero.find(".layui-layer-setwin").css({"top": "30px", "right": "30px"});
+                            }
+                        });
+                    } else {
+                        layer.msg(result.msg, {icon: 5});
+                    }
+                });
 
             },
             /**

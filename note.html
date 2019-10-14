@@ -94,7 +94,8 @@
                         <p class="time">{{toLocalTime(note.updateTime)}}</p>
                         <i class="icon remove layui-icon layui-icon-close-fill" @click.stop="removeNote(note.id)"></i>
                         <i class="icon view layui-icon layui-icon-layer" @click.stop="viewNote(note.id)"></i>
-                        <i class="icon download layui-icon layui-icon-download-circle" @click.stop="downloadNote(note.id)"></i>
+                        <i class="icon download layui-icon layui-icon-download-circle"
+                           @click.stop="downloadNote(note.id)"></i>
                     </li>
                 </ul>
                 <div style="margin-top: 10px;" v-else>暂无笔记</div>
@@ -139,6 +140,7 @@
         </form>
     </div>
 </div>
+<div id="noteContent" style="padding: 10px;display: none;"></div>
 <script src="jquery/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
 <script src="vue/vue.min.js"></script>
