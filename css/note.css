@@ -118,7 +118,7 @@
 .noteCategories .category-group .category-group-item .item-action {
     position: absolute;
     top: 0;
-    right: 40px;
+    right: 10px;
     display: none;
 }
 
@@ -133,6 +133,7 @@
 .noteCategories .category-group .category-group-item .item-action .icon {
     cursor: pointer;
     font-size: 18px;
+    margin-right: 10px;
 }
 
 .noteCategories .category-group .category-group-item.active {

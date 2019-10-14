@@ -68,28 +68,31 @@
             </form>
             <!--     分类列表       -->
             <div class="noteCategories" id="noteCategories">
-                <div class="title">
-                    <span>笔记分类</span>
-                    <span class="add" @click="addCategory"><i class="layui-icon layui-icon-add-1"></i>添加分类</span>
-                </div>
-                <ul id="category-group" class="category-group">
-                    <li class="category-group-item active" @click="getNotes($event,-2)">
-                        <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
-                        <span class="item-text">全部笔记</span>
-                    </li>
-                    <li class="category-group-item" v-for="c in categories" @click="getNotes($event,c.id)">
-                        <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
-                        <span class="item-text" v-text="c.name"></span>
-                        <span class="item-action">
-                            <i class="icon layui-icon layui-icon-edit" @click.stop="editCategory(c.id,c.name,$event)"></i>
+                <div @click.stop="return false;">
+                    <div class="title">
+                        <span>笔记分类</span>
+                        <span class="add" @click="addCategory"><i class="layui-icon layui-icon-add-1"></i>添加分类</span>
+                    </div>
+                    <ul id="category-group" class="category-group">
+                        <li class="category-group-item active" @click="getNotes($event,-2)">
+                            <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                            <span class="item-text">全部笔记</span>
+                        </li>
+                        <li class="category-group-item" v-for="c in categories" @click="getNotes($event,c.id)">
+                            <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                            <span class="item-text" v-text="c.name"></span>
+                            <span class="item-action">
+                            <i class="icon layui-icon layui-icon-edit"
+                               @click.stop="editCategory(c.id,c.name,$event)"></i>
                             <i class="icon layui-icon layui-icon-delete" @click.stop="delCategory(c.id,$event)"></i>
                         </span>
-                    </li>
-                    <li class="category-group-item" @click="getNotes($event,-1)">
-                        <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
-                        <span class="item-text">回收站</span>
-                    </li>
-                </ul>
+                        </li>
+                        <li class="category-group-item" @click="getNotes($event,-1)">
+                            <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                            <span class="item-text">回收站</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div id="scroll">
@@ -154,5 +157,10 @@
 <script src="jquery/jquery.slimscroll.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/note.js"></script>
+<script>
+    $(document).on("click", function () {
+        $("#noteCategories").hide();
+    });
+</script>
 </body>
 </html>

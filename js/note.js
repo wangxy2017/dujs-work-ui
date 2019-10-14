@@ -169,6 +169,10 @@ layui.use(['layedit', 'form', 'layer'], function () {
         }
     });
     window.showNoteCategories = function () {
+        //阻止事件冒泡
+        var e = window["event"] || arguments.callee.caller.arguments[0];
+        e.stopPropagation();
+
         var node = $("#noteCategories");
         if (node.is(":hidden")) {
             node.show();
