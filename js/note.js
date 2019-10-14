@@ -37,9 +37,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
         });
         return false;
     });
-    // 页面加载完成执行
-    $(function () {
-        // 加载分类
+    window.loadCategorySelect = function () {
         get('/category/findAll', function (result) {
             if (result.code == 1) {
                 var list = result.data == null ? [] : result.data;
@@ -47,11 +45,16 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 for (var i = 0; i < list.length; i++) {
                     html += ' <option value="' + list[i].id + '">' + list[i].name + '</option>';
                 }
-                $("#category").empty().append(html);
+                $("#categorySelect").empty().append(html);
                 // 重新渲染
                 form.render("select");
             }
         });
+    };
+    // 页面加载完成执行
+    $(function () {
+        // 加载分类
+        loadCategorySelect();
         // 初始化滚动条
         $("#scroll").slimScroll({height: $("#scroll").height(), wheelStep: 10});
         $("#category-group").slimScroll({height: $("#category-group").height(), wheelStep: 10});
@@ -221,15 +224,76 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 $("#noteCategories").hide();
                 var _this = e.currentTarget;
                 $(_this).addClass("active").siblings().removeClass("active");
+            },
+            /**
+             * 修改分类
+             * @param id
+             * @param name
+             */
+            editCategory: function (id, name, e) {
+                var _this = e.currentTarget;
+                layer.prompt({title: '修改分类', maxlength: 20, value: name}, function (value, index, elem) {
+                    post('/category/update', {"id": id, "name": value}, function (result) {
+                        if (result.code == 1) {
+                            layer.msg("修改成功", {icon: 6});
+                            $(_this).parent().prev().text(value);
+                            loadCategorySelect();
+                        } else {
+                            layer.msg(result.msg, {icon: 5});
+                        }
+                    });
+                    layer.close(index);
+                });
+            },
+            /**
+             * 删除分类
+             * @param id
+             * @param e
+             */
+            delCategory: function (id, e) {
+                var _this = e.currentTarget;
+                layer.confirm('确认删除分类吗？', {title: '提示'}, function (index) {
+                    del("/category/" + id, function (result) {
+                        if (result.code == 1) {
+                            layer.msg("删除成功", {icon: 6});
+                            $(_this).parent().parent().remove();
+                            loadCategorySelect();
+                        } else {
+                            layer.msg(result.msg, {icon: 5});
+                        }
+                    });
+                    layer.close(index);
+                });
+            },
+            /**
+             * 新增分类
+             */
+            addCategory: function () {
+                layer.prompt({title: '分类名称', maxlength: 20}, function (value, index, elem) {
+                    post('/category/save', {"name": value}, function (result) {
+                        if (result.code == 1) {
+                            layer.msg("保存成功", {icon: 6});
+                            noteCategories.loadDataList();
+                            loadCategorySelect();
+                        } else {
+                            layer.msg(result.msg, {icon: 5});
+                        }
+                    });
+                    layer.close(index);
+                });
+            },
+            loadDataList: function () {
+                // 加载分类
+                get('/category/findAll', function (result) {
+                    if (result.code == 1) {
+                        noteCategories.categories = result.data;
+                    }
+                });
             }
         },
         mounted: function () {
             // 加载分类
-            get('/category/findAll', function (result) {
-                if (result.code == 1) {
-                    noteCategories.categories = result.data;
-                }
-            });
+            this.loadDataList();
         }
     });
 
