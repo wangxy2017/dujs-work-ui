@@ -90,9 +90,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 });
             },
             /**
-             * 查看笔记
+             * 编辑笔记
              */
-            viewNote: function (e, id) {
+            editNote: function (e, id) {
                 get('/note/content/' + id, function (result) {
                     if (result.code == 1) {
                         var note = result.data;
@@ -109,6 +109,16 @@ layui.use(['layedit', 'form', 'layer'], function () {
                 });
                 var _this = e.currentTarget;
                 $(_this).addClass("active").siblings().removeClass("active");
+            },
+            viewNote: function (id) {
+
+            },
+            /**
+             * 下载笔记
+             * @param id
+             */
+            downloadNote: function (id) {
+                window.location.href = getHost() + "/note/download/" + id;
             }
         },
         mounted: function () {

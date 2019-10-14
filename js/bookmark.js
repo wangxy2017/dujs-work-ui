@@ -6,7 +6,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
     //加载数据
     var tableList = table.render({
         elem: '#bookmarkList'
-        , url: getPort() + '/bookmark/list' //数据接口
+        , url: getHost() + '/bookmark/list' //数据接口
         , page: true //开启分页
         , headers: {"Token": window.localStorage.getItem("token")}
         , parseData: function (res) {
@@ -57,7 +57,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
     //导入书签
     var uploadInst = upload.render({
         elem: '#import' //绑定元素
-        , url: getPort() + '/bookmark/upload' //上传接口
+        , url: getHost() + '/bookmark/upload' //上传接口
         , accept: "file"
         , exts: "html"
         , headers: {"Token": window.localStorage.getItem("token")}
@@ -99,7 +99,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
      * 导出书签
      */
     window.exportAll = function () {
-        window.location.href = getPort() + "/bookmark/download/" + window.localStorage.getItem("userId");
+        window.location.href = getHost() + "/bookmark/download/" + window.localStorage.getItem("userId");
     };
     /**
      * 新窗口

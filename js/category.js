@@ -5,7 +5,7 @@ layui.use(['table', 'upload', 'form', 'layer'], function () {
     //加载数据
     var tableList = table.render({
         elem: '#categoryList'
-        , url: getPort() + '/category/list' //数据接口
+        , url: getHost() + '/category/list' //数据接口
         , page: true //开启分页
         , headers: {"Token": window.localStorage.getItem("token")}
         , parseData: function (res) {

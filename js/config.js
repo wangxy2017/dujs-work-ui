@@ -1,11 +1,11 @@
-var port = "http://47.108.71.102:9030";
+var host = "http://127.0.0.1:9000";
 
 /**
  * 获取host
  * @returns {string}
  */
-function getPort() {
-    return port;
+function getHost() {
+    return host;
 }
 
 /**
@@ -16,7 +16,7 @@ function getPort() {
 function get(url, callback) {
     $.ajax({
         type: "GET",
-        url: getPort() + url,
+        url: getHost() + url,
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
         xhrFields: {
@@ -47,7 +47,7 @@ function get(url, callback) {
 function post(url, data, callback) {
     $.ajax({
         type: "POST",
-        url: getPort() + url,
+        url: getHost() + url,
         dataType: "json",
         data: JSON.stringify(data),
         contentType: "application/json;charset=utf-8",
@@ -79,7 +79,7 @@ function post(url, data, callback) {
 function del(url, callback) {
     $.ajax({
         type: "DELETE",
-        url: getPort() + url,
+        url: getHost() + url,
         dataType: "json",
         headers: {"Token": window.localStorage.getItem("token")},
         xhrFields: {
