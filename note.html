@@ -36,6 +36,7 @@
 
         .main .main-right {
             position: fixed;
+            z-index: -1;
             top: 0;
             right: 0;
             bottom: 0;
@@ -67,8 +68,9 @@
                 </div>
             </form>
             <!--     分类列表       -->
+            <div class="noteCategoriesMask" id="noteCategoriesMask" onclick="closeNoteCategories()"></div>
             <div class="noteCategories" id="noteCategories">
-                <div @click.stop="return false;">
+                <div>
                     <div class="title">
                         <span>笔记分类</span>
                         <span class="add" @click="addCategory"><i class="layui-icon layui-icon-add-1"></i>添加分类</span>
@@ -165,10 +167,5 @@
 <script src="jquery/jquery.slimscroll.min.js"></script>
 <script src="js/config.js"></script>
 <script src="js/note.js"></script>
-<script>
-    $(document).on("click", function () {
-        $("#noteCategories").hide();
-    });
-</script>
 </body>
 </html>

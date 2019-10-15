@@ -164,16 +164,23 @@ layui.use(['layedit', 'form', 'layer'], function () {
         mounted: function () {
         }
     });
+    window.closeNoteCategories = function () {
+        $("#noteCategoriesMask").hide();
+        $("#noteCategories").hide();
+    };
     window.showNoteCategories = function () {
         //阻止事件冒泡
         var e = window["event"] || arguments.callee.caller.arguments[0];
         e.stopPropagation();
 
         var node = $("#noteCategories");
+        var mask = $("#noteCategoriesMask");
         if (node.is(":hidden")) {
             node.show();
+            mask.show();
         } else {
             node.hide();
+            mask.hide();
         }
     };
     /**
