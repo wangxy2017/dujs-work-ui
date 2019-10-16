@@ -56,8 +56,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
         // 加载分类
         loadCategorySelect();
         // 初始化滚动条
-        $("#scroll").niceScroll();
-        // $("#main-right").niceScroll();
+        $("#scroll").mCustomScrollbar({theme:"minimal-dark"});
     });
     // 笔记列表
     var vue = new Vue({
@@ -208,7 +207,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
             }
         },
         mounted: function () {
-            $("#noteContent").niceScroll();
+            // 初始化滚动条
+            $("#noteScroll").mCustomScrollbar({theme:"minimal-dark"});
         }
     });
     var noteCategories = new Vue({
@@ -317,7 +317,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
         mounted: function () {
             // 加载分类
             this.loadDataList();
-            $("#category-group").niceScroll();
+            // 初始化滚动条
+            $("#category-scroll").mCustomScrollbar({theme:"minimal-dark"});
         }
     });
 

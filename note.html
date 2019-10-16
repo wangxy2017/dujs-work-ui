@@ -6,6 +6,7 @@
     <title>笔记管理</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="scroll/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="css/note.css">
     <style>
         .main {
@@ -42,8 +43,22 @@
             bottom: 0;
             left: 300px;
             padding: 10px;
-            overflow-y: auto;
             box-sizing: border-box;
+        }
+
+        #category-scroll {
+            height: 480px;
+            overflow-y: auto;
+        }
+
+        #noteScroll {
+            height: calc(100% - 40px);
+            overflow-y: auto;
+        }
+
+        #mainScroll {
+            height: 100%;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -75,25 +90,27 @@
                         <span>笔记分类</span>
                         <span class="add" @click="addCategory"><i class="layui-icon layui-icon-add-1"></i>添加分类</span>
                     </div>
-                    <ul id="category-group" class="category-group">
-                        <li class="category-group-item active" @click="getNotes($event,-2)">
-                            <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
-                            <span class="item-text">全部笔记</span>
-                        </li>
-                        <li class="category-group-item" v-for="c in categories" @click="getNotes($event,c.id)">
-                            <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
-                            <span class="item-text" v-text="c.name"></span>
-                            <span class="item-action">
+                    <div id="category-scroll">
+                        <ul id="category-group" class="category-group">
+                            <li class="category-group-item active" @click="getNotes($event,-2)">
+                                <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                                <span class="item-text">全部笔记</span>
+                            </li>
+                            <li class="category-group-item" v-for="c in categories" @click="getNotes($event,c.id)">
+                                <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                                <span class="item-text" v-text="c.name"></span>
+                                <span class="item-action">
                             <i class="icon layui-icon layui-icon-edit"
                                @click.stop="editCategory(c.id,c.name,$event)"></i>
                             <i class="icon layui-icon layui-icon-delete" @click.stop="delCategory(c.id,$event)"></i>
                         </span>
-                        </li>
-                        <li class="category-group-item" @click="getNotes($event,-1)">
-                            <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
-                            <span class="item-text">回收站</span>
-                        </li>
-                    </ul>
+                            </li>
+                            <li class="category-group-item" @click="getNotes($event,-1)">
+                                <span class="item-icon"><i class="layui-icon layui-icon-ok"></i></span>
+                                <span class="item-text">回收站</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,30 +143,32 @@
             </div>
         </div>
     </div>
-    <div class="main-right" id="main-right">
-        <form class="layui-form" action="" id="noteForm" lay-filter="noteForm">
-            <input type="hidden" id="id" name="id">
-            <div class="layui-form-item">
-                <input type="text" name="title" required lay-verify="required" placeholder="输入笔记标题"
-                       autocomplete="off" class="layui-input" title="输入笔记标题">
-            </div>
-            <div class="layui-form-item">
-                <textarea id="content" name="content" style="display: none;" lay-verify="content"></textarea>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label" style="text-align: left;padding: 9px 0;">选择分类：</label>
-                <div class="layui-input-inline">
-                    <select name="category_id" lay-verify="required" id="categorySelect">
-                        <option value="">请选择</option>
-                    </select>
+    <div class="main-right">
+        <div id="mainScroll">
+            <form class="layui-form" action="" id="noteForm" lay-filter="noteForm">
+                <input type="hidden" id="id" name="id">
+                <div class="layui-form-item">
+                    <input type="text" name="title" required lay-verify="required" placeholder="输入笔记标题"
+                           autocomplete="off" class="layui-input" title="输入笔记标题">
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-inline">
-                    <button class="layui-btn" lay-submit lay-filter="saveNote">保存笔记</button>
+                <div class="layui-form-item">
+                    <textarea id="content" name="content" style="display: none;" lay-verify="content"></textarea>
                 </div>
-            </div>
-        </form>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="text-align: left;padding: 9px 0;">选择分类：</label>
+                    <div class="layui-input-inline">
+                        <select name="category_id" lay-verify="required" id="categorySelect">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-inline">
+                        <button class="layui-btn" lay-submit lay-filter="saveNote">保存笔记</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 <!-- 预览笔记 -->
@@ -159,12 +178,14 @@
         <span class="text" v-text="title"></span>
         <i class="close layui-icon layui-icon-close" @click="closeDiv"></i>
     </div>
-    <div class="body" v-html="content"></div>
+    <div id="noteScroll">
+        <div class="body" v-html="content"></div>
+    </div>
 </div>
 <script src="jquery/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
 <script src="vue/vue.min.js"></script>
-<script src="jquery/jquery.nicescroll.min.js"></script>
+<script src="scroll/jquery.mCustomScrollbar.js"></script>
 <script src="js/config.js"></script>
 <script src="js/note.js"></script>
 </body>
