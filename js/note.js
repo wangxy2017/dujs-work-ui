@@ -194,8 +194,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
     window.newNote = function () {
         // 表单重置
         resetForm();
-        // 触发提交
-        $("#saveNote").click();
+        // 聚焦
+        $("#title").focus();
     };
     var noteContent = new Vue({
         el: "#noteContent",
