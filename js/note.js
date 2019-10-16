@@ -56,7 +56,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
         // 加载分类
         loadCategorySelect();
         // 初始化滚动条
-        $("#scroll").mCustomScrollbar({theme:"minimal-dark"});
+        $("#scroll").mCustomScrollbar({theme: "minimal-dark"});
     });
     // 笔记列表
     var vue = new Vue({
@@ -194,6 +194,8 @@ layui.use(['layedit', 'form', 'layer'], function () {
     window.newNote = function () {
         // 表单重置
         resetForm();
+        // 触发提交
+        $("#saveNote").click();
     };
     var noteContent = new Vue({
         el: "#noteContent",
@@ -208,7 +210,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
         },
         mounted: function () {
             // 初始化滚动条
-            $("#noteScroll").mCustomScrollbar({theme:"minimal-dark"});
+            $("#noteScroll").mCustomScrollbar({theme: "minimal-dark"});
         }
     });
     var noteCategories = new Vue({
@@ -318,7 +320,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
             // 加载分类
             this.loadDataList();
             // 初始化滚动条
-            $("#category-scroll").mCustomScrollbar({theme:"minimal-dark"});
+            $("#category-scroll").mCustomScrollbar({theme: "minimal-dark"});
         }
     });
 
