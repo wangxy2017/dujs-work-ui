@@ -37,6 +37,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
         });
         return false;
     });
+    /**
+     * 加载分类下拉选框
+     */
     window.loadCategorySelect = function () {
         get('/category/findAll', function (result) {
             if (result.code == 1) {
@@ -58,7 +61,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
         // 初始化滚动条
         $("#scroll").mCustomScrollbar({theme: "minimal-dark"});
     });
-    // 笔记列表
+    /**
+     * 笔记列表
+     */
     var vue = new Vue({
         el: "#notes",
         data: {
@@ -141,6 +146,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
             this.loadNoteList();
         }
     });
+    /**
+     * 回收站界面
+     */
     var recycle = new Vue({
         el: "#recycleNotes",
         data: {
@@ -164,10 +172,16 @@ layui.use(['layedit', 'form', 'layer'], function () {
         mounted: function () {
         }
     });
+    /**
+     * 隐藏分类
+     */
     window.closeNoteCategories = function () {
         $("#noteCategoriesMask").hide();
         $("#noteCategories").hide();
     };
+    /**
+     * 显示分类
+     */
     window.showNoteCategories = function () {
         //阻止事件冒泡
         var e = window["event"] || arguments.callee.caller.arguments[0];
@@ -191,12 +205,18 @@ layui.use(['layedit', 'form', 'layer'], function () {
         $("#id").val("");
         layedit.setContent(index, "");
     };
+    /**
+     * 新建笔记
+     */
     window.newNote = function () {
         // 表单重置
         resetForm();
         // 聚焦
         $("#title").focus();
     };
+    /**
+     * 笔记预览界面
+     */
     var noteContent = new Vue({
         el: "#noteContent",
         data: {title: "", content: ""},
@@ -213,6 +233,9 @@ layui.use(['layedit', 'form', 'layer'], function () {
             $("#noteScroll").mCustomScrollbar({theme: "minimal-dark"});
         }
     });
+    /**
+     * 笔记分类界面
+     */
     var noteCategories = new Vue({
         el: "#noteCategories",
         data: {categories: []},
@@ -246,7 +269,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
                     $("#notes").show();
                 }
                 // 弹出框消失
-                $("#noteCategories").hide();
+                closeNoteCategories();
                 var _this = e.currentTarget;
                 $(_this).addClass("active").siblings().removeClass("active");
             },
