@@ -148,24 +148,29 @@
             <form class="layui-form" action="" id="noteForm" lay-filter="noteForm">
                 <input type="hidden" id="id" name="id">
                 <div class="layui-form-item">
-                    <input type="text" name="title" id="title" required lay-verify="required" placeholder="输入笔记标题"
-                           autocomplete="off" class="layui-input" title="输入笔记标题">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 500px">
+                            <input type="text" name="title" id="title" required lay-verify="required"
+                                   placeholder="输入笔记标题"
+                                   autocomplete="off" class="layui-input" title="输入笔记标题">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-form-label" style="padding: 9px 0;width: auto;">分类：</div>
+                        <div class="layui-input-inline">
+                            <select name="category_id" lay-verify="required" id="categorySelect">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <div class="layui-input-inline">
+                            <button class="layui-btn" lay-submit lay-filter="saveNote" id="saveNote">保存笔记</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="layui-form-item">
                     <textarea id="content" name="content" style="display: none;" lay-verify="content"></textarea>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label" style="text-align: left;padding: 9px 0;">选择分类：</label>
-                    <div class="layui-input-inline">
-                        <select name="category_id" lay-verify="required" id="categorySelect">
-                            <option value="">请选择</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-inline">
-                        <button class="layui-btn" lay-submit lay-filter="saveNote" id="saveNote">保存笔记</button>
-                    </div>
                 </div>
             </form>
         </div>

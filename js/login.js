@@ -89,6 +89,29 @@ layui.use(['carousel', 'form', 'layer'], function () {
         $("#login").show();
         $("#register").hide();
     };
+    window.checkForm = function () {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var email = $("#email").val();
+        if (isEmpty(username)) {
+            $("#username").focus();
+            $("#username").addClass("layui-form-danger");
+            layer.msg("必填项不能为空", {icon: 5,anim: 6});
+            return false;
+        }
+        if (isEmpty(password)) {
+            $("#password").focus();
+            $("#password").addClass("layui-form-danger");
+            layer.msg("必填项不能为空", {icon: 5,anim: 6});
+            return false;
+        }
+        if (isEmpty(email)) {
+            $("#email").focus();
+            $("#email").addClass("layui-form-danger");
+            layer.msg("必填项不能为空", {icon: 5,anim: 6});
+            return false;
+        }
+    };
     /**
      * 发送验证码
      */
@@ -97,9 +120,7 @@ layui.use(['carousel', 'form', 'layer'], function () {
         if (_this.hasClass("layui-btn-disabled")) {
             return false;
         }
-        var email = $("#email").val();
-        if (isEmpty(email)) {
-            layer.msg("请输入邮箱", {icon: 5});
+        if (!checkForm()) {
             return false;
         }
         get('/register/getCode?email=' + email, function (result) {

@@ -4,7 +4,7 @@ layui.use(['layedit', 'form', 'layer'], function () {
     var layer = layui.layer;
     // 建立编辑器
     var index = layedit.build('content', {
-        height: 800 //设置编辑器高度
+        height: 400 //设置编辑器高度
     });
     // 自定义验证
     form.verify({
